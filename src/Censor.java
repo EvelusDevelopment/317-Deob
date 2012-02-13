@@ -6,7 +6,7 @@ import sign.signlink;
 
 public class Censor {
 
-    public static void unpackCensor(ContainerArchive class44) {
+    public static void unpackCensor(FileContainer class44) {
         Buffer buffer0 = new Buffer(class44.getEntry("fragmentsenc.txt", null));
         Buffer buffer1 = new Buffer(class44.getEntry("badenc.txt", null));
         Buffer buffer2 = new Buffer(class44.getEntry("domainenc.txt", null));

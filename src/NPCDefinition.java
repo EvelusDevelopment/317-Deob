@@ -74,7 +74,7 @@ public class NPCDefinition {
             return getNPCDefinition(confignpcs[j]);
     }
 
-    public static void unpackNpcDefs(ContainerArchive class44) {
+    public static void unpackNpcDefs(FileContainer class44) {
         npcbuffer = new Buffer(class44.getEntry("npc.dat", null));
         Buffer buffer0 = new Buffer(class44.getEntry("npc.idx", null));
         anInt62 = buffer0.getShort();

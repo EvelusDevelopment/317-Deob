@@ -119,7 +119,7 @@ public class OndemandHandler extends NumericLoader implements Runnable {
         }
     }
 
-    public void loadVersionList(ContainerArchive class44, Main client1)
+    public void loadVersionList(FileContainer class44, Main client1)
     {
         String as[] = {
             "model_version", "anim_version", "midi_version", "map_version"
@@ -285,7 +285,7 @@ public class OndemandHandler extends NumericLoader implements Runnable {
             return;
         synchronized(aClass2_1361)
         {
-            for(OndemandRequest class30_sub2_sub3 = (OndemandRequest)aClass2_1361.method152(); class30_sub2_sub3 != null; class30_sub2_sub3 = (OndemandRequest)aClass2_1361.method153(false))
+            for(OndemandRequest class30_sub2_sub3 = (OndemandRequest)aClass2_1361.getFirst(); class30_sub2_sub3 != null; class30_sub2_sub3 = (OndemandRequest)aClass2_1361.next(false))
                 if(class30_sub2_sub3.index == i && class30_sub2_sub3.archiveid == j)
                     return;
 

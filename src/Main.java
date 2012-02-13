@@ -11,7 +11,7 @@ import java.net.*;
 import java.util.zip.CRC32;
 import sign.signlink;
 
-public class Main extends RSApplet {
+public class Main extends ApplicationApplet {
 
     public static String method14(int i, int j) {
         String s = String.valueOf(i);
@@ -155,9 +155,9 @@ public class Main extends RSApplet {
             drawWidget(Widget.widgets[anInt1042],0, 0, 0);
         } else
         {
-            RSFont class30_sub2_sub1_sub4 = p12_font;
+            BitmapFont class30_sub2_sub1_sub4 = p12_font;
             int j = 0;
-            Raster.setDimensions(463, 0, 77, 0);
+            BasicRasterizer.setDimensions(463, 0, 77, 0);
             for(int k = 0; k < 100; k++)
                 if(msgbody_stack[k] != null)
                 {
@@ -254,7 +254,7 @@ public class Main extends RSApplet {
                     }
                 }
 
-            Raster.reset();
+            BasicRasterizer.reset();
             anInt1211 = j * 14 + 7;
             if(anInt1211 < 78)
                 anInt1211 = 78;
@@ -263,10 +263,10 @@ public class Main extends RSApplet {
             if(localplayer != null && localplayer.name != null)
                 s = localplayer.name;
             else
-                s = TextUtils.formatUsername(-45804, username);
+                s = TextTools.formatUsername(-45804, username);
             class30_sub2_sub1_sub4.drawText(0, s + ":", 90, 822, 4);
             class30_sub2_sub1_sub4.drawText(255, aString887 + "*", 90, 822, 6 + class30_sub2_sub1_sub4.widthFontMetrics(anInt1116, s + ": "));
-            Raster.drawHorizontalLine(0, 77, 479, 0);
+            BasicRasterizer.drawHorizontalLine(0, 77, 479, 0);
         }
         if(aBoolean885 && clickarea == 2)
             method40((byte)9);
@@ -459,7 +459,7 @@ public class Main extends RSApplet {
                 }
             }
 
-            MapLoader class7 = new MapLoader(main_tilesettings, -60, 104, 104, main_heightmap);
+            LandscapeLoader class7 = new LandscapeLoader(main_tilesettings, -60, 104, 104, main_heightmap);
             int k2 = tilebytes.length;
             packetbuffer.putPacket(0);
             if(!aBoolean1159)
@@ -579,13 +579,13 @@ public class Main extends RSApplet {
             class7.method171(collisionmaps, pallet, 2);
             toplefttext_imagefetcher.initialize(0);
             packetbuffer.putPacket(0);
-            int k3 = MapLoader.anInt145;
+            int k3 = LandscapeLoader.anInt145;
             if(k3 > cheight)
                 k3 = cheight;
             if(k3 < cheight - 1)
                 k3 = cheight - 1;
             if(lowmemory)
-                pallet.buildPlane(MapLoader.anInt145);
+                pallet.buildPlane(LandscapeLoader.anInt145);
             else
                 pallet.buildPlane(0);
             for(int i5 = 0; i5 < 104; i5++)
@@ -1059,20 +1059,20 @@ public class Main extends RSApplet {
     {
         scrollbar0.renderImage(i1, 16083, l);
         scrollbar1.renderImage(i1, 16083, (l + j) - 16);
-        Raster.drawQuadrilateral(i1, l + 16, 16, j - 32, anInt1002);
+        BasicRasterizer.drawQuadrilateral(i1, l + 16, 16, j - 32, anInt1002);
         int k1 = ((j - 32) * j) / j1;
         if(k1 < 8)
             k1 = 8;
         int l1 = ((j - 32 - k1) * k) / (j1 - j);
-        Raster.drawQuadrilateral(i1, l + 16 + l1, 16, k1, anInt1063);
-        Raster.drawVerticalLine(i1,l + 16 + l1, k1, anInt902);
-        Raster.drawVerticalLine(i1 + 1, l + 16 + l1, k1, anInt902);
-        Raster.drawHorizontalLine( i1, l + 16 + l1, 16, anInt902);
-        Raster.drawHorizontalLine( i1, l + 17 + l1, 16, anInt902);
-        Raster.drawVerticalLine(i1 + 15, l + 16 + l1, k1, anInt927);
-        Raster.drawVerticalLine(i1 + 14, l + 17 + l1, k1 - 1, anInt927);
-        Raster.drawHorizontalLine( i1, l + 15 + l1 + k1, 16, anInt927);
-        Raster.drawHorizontalLine(i1 + 1, l + 14 + l1 + k1, 15, anInt927);
+        BasicRasterizer.drawQuadrilateral(i1, l + 16 + l1, 16, k1, anInt1063);
+        BasicRasterizer.drawVerticalLine(i1,l + 16 + l1, k1, anInt902);
+        BasicRasterizer.drawVerticalLine(i1 + 1, l + 16 + l1, k1, anInt902);
+        BasicRasterizer.drawHorizontalLine( i1, l + 16 + l1, 16, anInt902);
+        BasicRasterizer.drawHorizontalLine( i1, l + 17 + l1, 16, anInt902);
+        BasicRasterizer.drawVerticalLine(i1 + 15, l + 16 + l1, k1, anInt927);
+        BasicRasterizer.drawVerticalLine(i1 + 14, l + 17 + l1, k1 - 1, anInt927);
+        BasicRasterizer.drawHorizontalLine( i1, l + 15 + l1 + k1, 16, anInt927);
+        BasicRasterizer.drawHorizontalLine(i1 + 1, l + 14 + l1 + k1, 15, anInt927);
     }
 
     public void parseNpcUpdate(Buffer buffer, int i, int j)
@@ -1381,8 +1381,8 @@ public class Main extends RSApplet {
                     int i1 = (((Mob) (obj)).anInt1533 * 30) / ((Mob) (obj)).anInt1534;
                     if(i1 > 30)
                         i1 = 30;
-                    Raster.drawQuadrilateral( spriteX - 15, spriteY - 3, i1, 5, 65280);
-                    Raster.drawQuadrilateral((spriteX - 15) + i1, spriteY - 3, 30 - i1, 5, 0xff0000);
+                    BasicRasterizer.drawQuadrilateral( spriteX - 15, spriteY - 3, i1, 5, 65280);
+                    BasicRasterizer.drawQuadrilateral((spriteX - 15) + i1, spriteY - 3, 30 - i1, 5, 0xff0000);
                 }
             }
 			/* Draw hitmarks */
@@ -1508,10 +1508,10 @@ public class Main extends RSApplet {
                 {
                     int i4 = b12_font.heightFontMetrics(s, true);
                     int k4 = ((150 - anIntArray982[k]) * (i4 + 100)) / 150;
-                    Raster.setDimensions(spriteX + 50, spriteX - 50, 334, 0);
+                    BasicRasterizer.setDimensions(spriteX + 50, spriteX - 50, 334, 0);
                     b12_font.drawText(0, s, spriteY + 1, 822, (spriteX + 50) - k4);
                     b12_font.drawText(i3, s, spriteY, 822, (spriteX + 50) - k4);
-                    Raster.reset();
+                    BasicRasterizer.reset();
                 }
                 if(anIntArray981[k] == 5)
                 {
@@ -1522,10 +1522,10 @@ public class Main extends RSApplet {
                     else
                     if(j4 > 125)
                         l4 = j4 - 125;
-                    Raster.setDimensions( 512, 0, spriteY + 5, spriteY - b12_font.maxh - 1);
+                    BasicRasterizer.setDimensions( 512, 0, spriteY + 5, spriteY - b12_font.maxh - 1);
                     b12_font.drawCenteredYText(0, s, 23693, spriteY + 1 + l4, spriteX);
                     b12_font.drawCenteredYText(i3, s, 23693, spriteY + l4, spriteX);
-                    Raster.reset();
+                    BasicRasterizer.reset();
                 }
             } else
             {
@@ -1798,13 +1798,13 @@ public class Main extends RSApplet {
         int k = anInt951;
         int l = anInt952;
         int i1 = 0x5d5447;
-        Raster.drawQuadrilateral(i, j, k, l, i1);
+        BasicRasterizer.drawQuadrilateral(i, j, k, l, i1);
         if(byte0 == 9)
             byte0 = 0;
         else
             return;
-        Raster.drawQuadrilateral( i + 1, j + 1, k - 2, 16, 0);
-        Raster.drawQuadrilateralOutline(i + 1, j + 18, k - 2, l - 19, 0);
+        BasicRasterizer.drawQuadrilateral( i + 1, j + 1, k - 2, 16, 0);
+        BasicRasterizer.drawQuadrilateralOutline(i + 1, j + 18, k - 2, l - 19, 0);
         b12_font.drawText(i1, "Choose Option", j + 14, 822, i + 3);
         int j1 = super.mouse_x;
         int k1 = super.mouse_y;
@@ -1850,7 +1850,7 @@ public class Main extends RSApplet {
                 pushMessage("Your friendlist is full. Max of 100 for free users, and 200 for members", 0, "", aBoolean991);
                 return;
             }
-            String s = TextUtils.formatUsername(-45804, TextUtils.longToString(l, (byte)-99));
+            String s = TextTools.formatUsername(-45804, TextTools.longToString(l, (byte)-99));
             for(int i = 0; i < amt_friendhashes; i++)
                 if(friend_hashes[i] == l)
                 {
@@ -2169,7 +2169,7 @@ public class Main extends RSApplet {
             if(aString881.length() > 0)
             {
                 packetbuffer.putPacket(218);
-                packetbuffer.putLong(TextUtils.stringToLong(aString881));
+                packetbuffer.putLong(TextTools.stringToLong(aString881));
                 packetbuffer.put(j - 601);
                 packetbuffer.put(aBoolean1158 ? 1 : 0);
             }
@@ -2443,15 +2443,15 @@ public class Main extends RSApplet {
         Palette.lowmemory = false;
         TriangleRasterizer.lowmemory = false;
         lowmemory = false;
-        MapLoader.lowmemory = false;
+        LandscapeLoader.lowmemory = false;
         ObjectDefinition.lowmemory = false;
     }
 
     public static void main(String args[]) {
         try {
-            System.out.println("RS2 user Main - release #" + 317);
-            if(args.length != 5) {
-                System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
+            System.out.println("Refactored by Sini - Visit RuneTekk.com for more RSPS tools!");
+            if(args.length != 6) {
+                System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid, issac enabled [y/n]");
                 return;
             }
             nodeid = Integer.parseInt(args[0]);
@@ -2488,7 +2488,7 @@ public class Main extends RSApplet {
     {
         if(i != -48877)
             return;
-        if(lowmemory && landscape_stage == 2 && MapLoader.ml_hieght != cheight)
+        if(lowmemory && landscape_stage == 2 && LandscapeLoader.ml_hieght != cheight)
         {
             toplefttext_imagefetcher.initialize(0);
             p12_font.drawCenteredYText(0, "Loading - please wait.", 23693, 151, 257);
@@ -2536,7 +2536,7 @@ public class Main extends RSApplet {
                     k = 10;
                     l = 10;
                 }
-                flag &= MapLoader.method189(k, abyte0, l, 6);
+                flag &= LandscapeLoader.method189(k, abyte0, l, 6);
             }
         }
 
@@ -2548,7 +2548,7 @@ public class Main extends RSApplet {
         } else
         {
             landscape_stage = 2;
-            MapLoader.ml_hieght = cheight;
+            LandscapeLoader.ml_hieght = cheight;
             processLandscapeLoading_(true);
             packetbuffer.putPacket(121);
             return 0;
@@ -2702,7 +2702,7 @@ public class Main extends RSApplet {
 
                 }
             } while(class30_sub2_sub3.index != 93 || !ondemandhandler.method564(class30_sub2_sub3.archiveid, -520));
-            MapLoader.loadExtraObjects((byte)-107, new Buffer(class30_sub2_sub3.request_data), ondemandhandler);
+            LandscapeLoader.loadExtraObjects((byte)-107, new Buffer(class30_sub2_sub3.request_data), ondemandhandler);
         } while(true);
     }
 
@@ -3201,23 +3201,23 @@ public class Main extends RSApplet {
         aClass15_1124 = null;
         aClass15_1125 = null;
         titletopleft_imagefetcher = new ImageFetcher(128, 265, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         titletopright_imagefetcher = new ImageFetcher(128, 265, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         logo_imagefetcher = new ImageFetcher(509, 171, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         bottomleftmid_imagefetcher = new ImageFetcher(360, 132, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         aClass15_1109 = new ImageFetcher(360, 200, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         aClass15_1112 = new ImageFetcher(202, 238, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         aClass15_1113 = new ImageFetcher(203, 238, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         aClass15_1114 = new ImageFetcher(74, 94, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         aClass15_1115 = new ImageFetcher(75, 94, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         if(titlescreen_archive != null) {
             drawTitleBackround(0);
             method51(215);
@@ -3241,10 +3241,10 @@ public class Main extends RSApplet {
         byte byte1 = 20;
         p11_font.drawCenteredYText(0xffffff, "RuneScape is loading - please wait...", 23693, c1 / 2 - 26 - byte1, c / 2);
         int j = c1 / 2 - 18 - byte1;
-        Raster.drawQuadrilateralOutline(c / 2 - 152, j, 304, 34, 0x8c1111);
-        Raster.drawQuadrilateralOutline(c / 2 - 151, j + 1, 302, 32, 0);
-        Raster.drawQuadrilateral(c / 2 - 150, j + 2, i * 3, 30, 0x8c1111);
-        Raster.drawQuadrilateral( (c / 2 - 150) + i * 3, j + 2, 300 - i * 3, 30, 0);
+        BasicRasterizer.drawQuadrilateralOutline(c / 2 - 152, j, 304, 34, 0x8c1111);
+        BasicRasterizer.drawQuadrilateralOutline(c / 2 - 151, j + 1, 302, 32, 0);
+        BasicRasterizer.drawQuadrilateral(c / 2 - 150, j + 2, i * 3, 30, 0x8c1111);
+        BasicRasterizer.drawQuadrilateral( (c / 2 - 150) + i * 3, j + 2, 300 - i * 3, 30, 0);
         b12_font.drawCenteredYText(0xffffff, s, 23693, (c1 / 2 + 5) - byte1, c / 2);
         aClass15_1109.updateGraphics(171, 23680, super.graphics, 202);
         if(byte0 != 4)
@@ -3348,7 +3348,7 @@ public class Main extends RSApplet {
         return true;
     }
 
-    public ContainerArchive getContainerArchive(int i, String s, String s1, int j, byte byte0, int k)
+    public FileContainer getContainerArchive(int i, String s, String s1, int j, byte byte0, int k)
     {
         byte abyte0[] = null;
         int l = 5;
@@ -3367,7 +3367,7 @@ public class Main extends RSApplet {
         } */
         if(abyte0 != null)
         {
-            ContainerArchive class44 = new ContainerArchive(44820, abyte0);
+            FileContainer class44 = new FileContainer(44820, abyte0);
             return class44;
         }
         int j1 = 0;
@@ -3480,7 +3480,7 @@ public class Main extends RSApplet {
                 aBoolean872 = !aBoolean872;
             }
         }
-        ContainerArchive class44_1 = new ContainerArchive(44820, abyte0);
+        FileContainer class44_1 = new FileContainer(44820, abyte0);
         if(byte0 != -41)
             throw new NullPointerException();
         else
@@ -3504,7 +3504,7 @@ public class Main extends RSApplet {
         toplefttext_imagefetcher.updateGraphics(4, 23680, super.graphics, 4);
         anInt1021 = 0;
         anInt1261 = 0;
-        SocketHandler class24 = gameserver_sockethandler;
+        SocketWorker class24 = gameserver_sockethandler;
         aBoolean1157 = false;
         anInt1038 = 0;
         login(username, password, true);
@@ -3722,7 +3722,7 @@ public class Main extends RSApplet {
             int k1 = s.indexOf("@whi@");
             if(k1 != -1)
             {
-                long l3 = TextUtils.stringToLong(s.substring(k1 + 5).trim());
+                long l3 = TextTools.stringToLong(s.substring(k1 + 5).trim());
                 if(l == 337)
                     socialListLogic((byte)68, l3);
                 if(l == 42)
@@ -3770,7 +3770,7 @@ public class Main extends RSApplet {
             if(l1 != -1)
             {
                 s1 = s1.substring(l1 + 5).trim();
-                String s7 = TextUtils.formatUsername(-45804, TextUtils.longToString(TextUtils.stringToLong(s1), (byte)-99));
+                String s7 = TextTools.formatUsername(-45804, TextTools.longToString(TextTools.stringToLong(s1), (byte)-99));
                 boolean flag9 = false;
                 for(int j3 = 0; j3 < anInt891; j3++)
                 {
@@ -4235,7 +4235,7 @@ public class Main extends RSApplet {
             int k2 = s3.indexOf("@whi@");
             if(k2 != -1)
             {
-                long l4 = TextUtils.stringToLong(s3.substring(k2 + 5).trim());
+                long l4 = TextTools.stringToLong(s3.substring(k2 + 5).trim());
                 int k3 = -1;
                 for(int i4 = 0; i4 < amt_friendhashes; i4++)
                 {
@@ -4445,12 +4445,12 @@ public class Main extends RSApplet {
             int l = Model.anIntArray1688[k];
             int i1 = l & 0x7f;
             int j1 = l >> 7 & 0x7f;
-            int k1 = l >> 29 & 3;
+            int type = l >> 29 & 3;
             int l1 = l >> 14 & 0x7fff;
             if(l == j)
                 continue;
             j = l;
-            if(k1 == 2 && pallet.method304(cheight, i1, j1, l) >= 0)
+            if(type == 2 && pallet.method304(cheight, i1, j1, l) >= 0)
             {
                 ObjectDefinition class46 = ObjectDefinition.getObjectDefinition(l1);
                 if(class46.anIntArray759 != null)
@@ -4510,7 +4510,7 @@ public class Main extends RSApplet {
                     anInt1133++;
                 }
             }
-            if(k1 == 1)
+            if(type == 1)
             {
                 NPC class30_sub2_sub4_sub1_sub1 = npcs[l1];
                 if(class30_sub2_sub4_sub1_sub1.definition.npc_halftileoffsets == 1 && (((Mob) (class30_sub2_sub4_sub1_sub1)).fineposx & 0x7f) == 64 && (((Mob) (class30_sub2_sub4_sub1_sub1)).fineposy & 0x7f) == 64)
@@ -4532,7 +4532,7 @@ public class Main extends RSApplet {
                 }
                 method87(class30_sub2_sub4_sub1_sub1.definition, l1, false, j1, i1);
             }
-            if(k1 == 0)
+            if(type == 0)
             {
                 Player class30_sub2_sub4_sub1_sub2 = players[l1];
                 if((((Mob) (class30_sub2_sub4_sub1_sub2)).fineposx & 0x7f) == 64 && (((Mob) (class30_sub2_sub4_sub1_sub2)).fineposy & 0x7f) == 64)
@@ -4554,7 +4554,7 @@ public class Main extends RSApplet {
                 }
                 method88(i1, l1, class30_sub2_sub4_sub1_sub2, false, j1);
             }
-            if(k1 == 3)
+            if(type == 3)
             {
                 Deque class19 = grounditems[cheight][i1][j1];
                 if(class19 != null)
@@ -4822,12 +4822,12 @@ public class Main extends RSApplet {
                     aBoolean1223 = true;
                     if(anInt1064 == 1)
                     {
-                        long l = TextUtils.stringToLong(aString1212);
+                        long l = TextTools.stringToLong(aString1212);
                         socialListLogic((byte)68, l);
                     }
                     if(anInt1064 == 2 && amt_friendhashes > 0)
                     {
-                        long l1 = TextUtils.stringToLong(aString1212);
+                        long l1 = TextTools.stringToLong(aString1212);
                         removeFriend(false, l1);
                     }
                     if(anInt1064 == 3 && aString1212.length() > 0)
@@ -4840,7 +4840,7 @@ public class Main extends RSApplet {
                         packetbuffer.finishByteVar(packetbuffer.position - k, (byte)0);
                         aString1212 = ChatUtils.method527(aString1212, 0);
                         aString1212 = Censor.censor(aString1212, 0);
-                        pushMessage(aString1212, 6, TextUtils.formatUsername(-45804, TextUtils.longToString(aLong953, (byte)-99)), aBoolean991);
+                        pushMessage(aString1212, 6, TextTools.formatUsername(-45804, TextTools.longToString(aLong953, (byte)-99)), aBoolean991);
                         if(anInt845 == 2)
                         {
                             anInt845 = 1;
@@ -4853,12 +4853,12 @@ public class Main extends RSApplet {
                     }
                     if(anInt1064 == 4 && amt_ignorehashes < 100)
                     {
-                        long l2 = TextUtils.stringToLong(aString1212);
+                        long l2 = TextTools.stringToLong(aString1212);
                         method113(l2, 4);
                     }
                     if(anInt1064 == 5 && amt_ignorehashes > 0)
                     {
-                        long l3 = TextUtils.stringToLong(aString1212);
+                        long l3 = TextTools.stringToLong(aString1212);
                         method122(3, l3);
                     }
                 }
@@ -4909,7 +4909,7 @@ public class Main extends RSApplet {
                     if(aString1004.length() > 0)
                     {
                         packetbuffer.putPacket(60);
-                        packetbuffer.putLong(TextUtils.stringToLong(aString1004));
+                        packetbuffer.putLong(TextTools.stringToLong(aString1004));
                     }
                     anInt1225 = 0;
                     aBoolean1223 = true;
@@ -5286,7 +5286,7 @@ public class Main extends RSApplet {
                 return;
             } else
             {
-                widget.aString248 = TextUtils.formatUsername(-45804, TextUtils.longToString(ignore_hashes[code], (byte)-99));
+                widget.aString248 = TextTools.formatUsername(-45804, TextTools.longToString(ignore_hashes[code], (byte)-99));
                 widget.textfieldtype = 1;
                 return;
             }
@@ -5495,7 +5495,7 @@ public class Main extends RSApplet {
     {
         if(anInt1195 == 0)
             return;
-        RSFont class30_sub2_sub1_sub4 = p12_font;
+        BitmapFont class30_sub2_sub1_sub4 = p12_font;
         if(byte0 != aByte1274)
             aBoolean1231 = !aBoolean1231;
         int i = 0;
@@ -5690,11 +5690,11 @@ public class Main extends RSApplet {
         aClass15_1115 = null;
         chat_imagefetcher = new ImageFetcher(479, 96, getDrawableComponent(0), 0);
         aClass15_1164 = new ImageFetcher(172, 156, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         mapback.renderImage(0, 16083, 0);
         aClass15_1163 = new ImageFetcher(190, 261, getDrawableComponent(0), 0);
         toplefttext_imagefetcher = new ImageFetcher(512, 334, getDrawableComponent(0), 0);
-        Raster.resetOutput();
+        BasicRasterizer.resetOutput();
         toolbartext_imagefetcher = new ImageFetcher(496, 50, getDrawableComponent(0), 0);
         if(i != 1)
             loadClient();
@@ -5827,15 +5827,15 @@ public class Main extends RSApplet {
                 aString1267 = "Connecting to server...";
                 drawTitleScreen(true, false);
             }
-            gameserver_sockethandler = new SocketHandler(this, -978, spawnSocket(43594 + portoff));
-            long l = TextUtils.stringToLong(s);
+            gameserver_sockethandler = new SocketWorker(this, -978, spawnSocket(43594 + portoff));
+            long l = TextTools.stringToLong(s);
             int i = (int)(l >> 16 & 31L);
             packetbuffer.position = 0;
             packetbuffer.put(14);
             packetbuffer.put(i);
             gameserver_sockethandler.writeBytes(2, 0, packetbuffer.payload, 0);
-            /* for(int j = 0; j < 8; j++)
-                gameserver_sockethandler.method268(); */
+            for(int j = 0; j < 8; j++)
+                gameserver_sockethandler.method268(); 
             int k = gameserver_sockethandler.method268();
             int i1 = k;
             if(k == 0)
@@ -6789,31 +6789,31 @@ public class Main extends RSApplet {
         if(signlink.cache_dat != null)
         {
             for(int i = 0; i < 5; i++)
-                cacheindexes[i] = new CacheIndex(0xffffff, signlink.cache_dat, signlink.cache_idx[i], i + 1, true);
+                cacheindexes[i] = new FileIndex(0xffffff, signlink.cache_dat, signlink.cache_idx[i], i + 1, true);
         }
         try
         {
             grabCRCs(533);
             titlescreen_archive = getContainerArchive(1, "title screen", "title", cacheidx_crcs[1], (byte)-41, 25);
-            p11_font = new RSFont(false, "p11_full", 0, titlescreen_archive);
-            p12_font = new RSFont(false, "p12_full", 0, titlescreen_archive);
-            b12_font = new RSFont(false, "b12_full", 0, titlescreen_archive);
-            q8_font = new RSFont(true, "q8_full", 0, titlescreen_archive);
+            p11_font = new BitmapFont(false, "p11_full", 0, titlescreen_archive);
+            p12_font = new BitmapFont(false, "p12_full", 0, titlescreen_archive);
+            b12_font = new BitmapFont(false, "b12_full", 0, titlescreen_archive);
+            q8_font = new BitmapFont(true, "q8_full", 0, titlescreen_archive);
             drawTitleBackround(0);
             method51(215);
-            ContainerArchive class44 = getContainerArchive(2, "config", "config", cacheidx_crcs[2], (byte)-41, 30);
-            ContainerArchive class44_1 = getContainerArchive(3, "interface", "interface", cacheidx_crcs[3], (byte)-41, 35);
-            ContainerArchive graphics_archive = getContainerArchive(4, "2d graphics", "media", cacheidx_crcs[4], (byte)-41, 40);
-            ContainerArchive class44_3 = getContainerArchive(6, "textures", "textures", cacheidx_crcs[6], (byte)-41, 45);
-            ContainerArchive class44_4 = getContainerArchive(7, "chat system", "wordenc", cacheidx_crcs[7], (byte)-41, 50);
-            ContainerArchive class44_5 = getContainerArchive(8, "sound effects", "sounds", cacheidx_crcs[8], (byte)-41, 55);
+            FileContainer class44 = getContainerArchive(2, "config", "config", cacheidx_crcs[2], (byte)-41, 30);
+            FileContainer class44_1 = getContainerArchive(3, "interface", "interface", cacheidx_crcs[3], (byte)-41, 35);
+            FileContainer graphics_archive = getContainerArchive(4, "2d graphics", "media", cacheidx_crcs[4], (byte)-41, 40);
+            FileContainer class44_3 = getContainerArchive(6, "textures", "textures", cacheidx_crcs[6], (byte)-41, 45);
+            FileContainer class44_4 = getContainerArchive(7, "chat system", "wordenc", cacheidx_crcs[7], (byte)-41, 50);
+            FileContainer class44_5 = getContainerArchive(8, "sound effects", "sounds", cacheidx_crcs[8], (byte)-41, 55);
             main_tilesettings = new byte[4][104][104];
             main_heightmap = new int[4][105][105];
             pallet = new Palette(104, 104, 4, main_heightmap);
             for(int j = 0; j < 4; j++)
                 collisionmaps[j] = new CollisionMap(104, 104);
             aClass30_Sub2_Sub1_Sub1_1263 = new DirectColorSprite(512, 512);
-            ContainerArchive class44_6 = getContainerArchive(5, "update list", "versionlist", cacheidx_crcs[5], (byte)-41, 60);
+            FileContainer class44_6 = getContainerArchive(5, "update list", "versionlist", cacheidx_crcs[5], (byte)-41, 60);
             drawLoadingBar(60, (byte)4, "Connecting to update server");
             ondemandhandler = new OndemandHandler();
             ondemandhandler.loadVersionList(class44_6, this);
@@ -7093,7 +7093,7 @@ public class Main extends RSApplet {
                 Sound.method240(0, buffer0);
             }
             drawLoadingBar(95, (byte)4, "Unpacking interfaces");
-            RSFont aclass30_sub2_sub1_sub4[] = {
+            BitmapFont aclass30_sub2_sub1_sub4[] = {
                 p11_font, p12_font, b12_font, q8_font
             };
             Widget.unpackWidgets(class44_1, aclass30_sub2_sub1_sub4, graphics_archive);
@@ -7159,9 +7159,9 @@ public class Main extends RSApplet {
 
             Palette.method310(500, 800, 512, 334, ai, aBoolean1231);
             Censor.unpackCensor(class44_4);
-            watchdog = new WatchDog(this, anInt1096);
+            watchdog = new Monitor(this, anInt1096);
             spawnThread(watchdog, 10);
-            RSObject.main = this;
+            GameObject.main = this;
             ObjectDefinition.main = this;
             NPCDefinition.main = this;
             return;
@@ -7938,9 +7938,9 @@ public class Main extends RSApplet {
 
     public void processGFXs(boolean flag)
     {
-        GFX class30_sub2_sub4_sub3 = (GFX)gfxs_storage.getFirst();
+        StillGraphic class30_sub2_sub4_sub3 = (StillGraphic)gfxs_storage.getFirst();
         aBoolean1157 &= flag;
-        for(; class30_sub2_sub4_sub3 != null; class30_sub2_sub4_sub3 = (GFX)gfxs_storage.getNextForwards(false))
+        for(; class30_sub2_sub4_sub3 != null; class30_sub2_sub4_sub3 = (StillGraphic)gfxs_storage.getNextForwards(false))
             if(class30_sub2_sub4_sub3.anInt1560 != cheight || class30_sub2_sub4_sub3.destroy_gfx)
                 class30_sub2_sub4_sub3.removeDeque();
             else
@@ -7961,11 +7961,11 @@ public class Main extends RSApplet {
             return;
         if(widget.aBoolean266 && anInt1026 != widget.widgetid && anInt1048 != widget.widgetid && anInt1039 != widget.widgetid)
             return;
-        int prevwidthoffset = Raster.widthoffset;
-        int prevheightoffset = Raster.heightoffset;
-        int prevwidth = Raster.width;
-        int prevheight = Raster.height;
-        Raster.setDimensions(offsetx + widget.width, offsetx, offsety + widget.height, offsety);
+        int prevwidthoffset = BasicRasterizer.widthoffset;
+        int prevheightoffset = BasicRasterizer.heightoffset;
+        int prevwidth = BasicRasterizer.width;
+        int prevheight = BasicRasterizer.height;
+        BasicRasterizer.setDimensions(offsetx + widget.width, offsetx, offsety + widget.height, offsety);
         int amountchildren = widget.childrenwidgets.length;
         for(int child = 0; child < amountchildren; child++)
         {
@@ -8006,7 +8006,7 @@ public class Main extends RSApplet {
                                 int k6 = 0;
                                 int j7 = 0;
                                 int itemid = childwidget.itemarray[i3] - 1;
-                                if(k5 > Raster.widthoffset - 32 && k5 < Raster.width && j6 > Raster.heightoffset - 32 && j6 < Raster.height || anInt1086 != 0 && moveitem_startslot == i3)
+                                if(k5 > BasicRasterizer.widthoffset - 32 && k5 < BasicRasterizer.width && j6 > BasicRasterizer.heightoffset - 32 && j6 < BasicRasterizer.height || anInt1086 != 0 && moveitem_startslot == i3)
                                 {
                                     int l9 = 0;
                                     if(anInt1282 == 1 && anInt1283 == i3 && anInt1284 == childwidget.widgetid)
@@ -8028,9 +8028,9 @@ public class Main extends RSApplet {
                                                 j7 = 0;
                                             }
                                             sprite.drawBlended(k5 + k6, j6 + j7, 128, aBoolean1043);
-                                            if(j6 + j7 < Raster.heightoffset && childwidget.anInt224 > 0)
+                                            if(j6 + j7 < BasicRasterizer.heightoffset && childwidget.anInt224 > 0)
                                             {
-                                                int i10 = (anInt945 * (Raster.heightoffset - j6 - j7)) / 3;
+                                                int i10 = (anInt945 * (BasicRasterizer.heightoffset - j6 - j7)) / 3;
                                                 if(i10 > anInt945 * 10)
                                                     i10 = anInt945 * 10;
                                                 if(i10 > childwidget.anInt224)
@@ -8038,9 +8038,9 @@ public class Main extends RSApplet {
                                                 childwidget.anInt224 -= i10;
                                                 anInt1088 += i10;
                                             }
-                                            if(j6 + j7 + 32 > Raster.height && childwidget.anInt224 < childwidget.anInt261 - childwidget.height)
+                                            if(j6 + j7 + 32 > BasicRasterizer.height && childwidget.anInt224 < childwidget.anInt261 - childwidget.height)
                                             {
-                                                int j10 = (anInt945 * ((j6 + j7 + 32) - Raster.height)) / 3;
+                                                int j10 = (anInt945 * ((j6 + j7 + 32) - BasicRasterizer.height)) / 3;
                                                 if(j10 > anInt945 * 10)
                                                     j10 = anInt945 * 10;
                                                 if(j10 > childwidget.anInt261 - childwidget.height - childwidget.anInt224)
@@ -8094,18 +8094,18 @@ public class Main extends RSApplet {
                     if(childwidget.oalpha == 0)
                     {
                         if(childwidget.aBoolean227)
-                            Raster.drawQuadrilateral( x, y, childwidget.width, childwidget.height, j3);
+                            BasicRasterizer.drawQuadrilateral( x, y, childwidget.width, childwidget.height, j3);
                         else
-                            Raster.drawQuadrilateralOutline(x, y, childwidget.width, childwidget.height, j3);
+                            BasicRasterizer.drawQuadrilateralOutline(x, y, childwidget.width, childwidget.height, j3);
                     } else
                     if(childwidget.aBoolean227)
-                        Raster.drawQuadrilateralBlend(x, y, childwidget.width, childwidget.height, 256 - (childwidget.oalpha & 0xff), j3);
+                        BasicRasterizer.drawQuadrilateralBlend(x, y, childwidget.width, childwidget.height, 256 - (childwidget.oalpha & 0xff), j3);
                     else
-                        Raster.drawQuadrilateralOutlineBlend(x, y, childwidget.width, childwidget.height, 256 - (childwidget.oalpha & 0xff), j3);
+                        BasicRasterizer.drawQuadrilateralOutlineBlend(x, y, childwidget.width, childwidget.height, 256 - (childwidget.oalpha & 0xff), j3);
                 } else
                 if(childwidget.widgettype == 4)
                 {
-                    RSFont font = childwidget.itemfont;
+                    BitmapFont font = childwidget.itemfont;
                     String s = childwidget.aString248;
                     boolean flag1 = false;
                     if(anInt1039 == childwidget.widgetid || anInt1048 == childwidget.widgetid || anInt1026 == childwidget.widgetid)
@@ -8129,7 +8129,7 @@ public class Main extends RSApplet {
                         s = "Please wait...";
                         color = childwidget.anInt232;
                     }
-                    if(Raster.outputwidth == 479)
+                    if(BasicRasterizer.outputwidth == 479)
                     {
                         if(color == 0xffff00)
                             color = 255;
@@ -8234,7 +8234,7 @@ public class Main extends RSApplet {
                 } else
                 if(childwidget.widgettype == 7)
                 {
-                    RSFont class30_sub2_sub1_sub4_1 = childwidget.itemfont;
+                    BitmapFont class30_sub2_sub1_sub4_1 = childwidget.itemfont;
                     int k4 = 0;
                     for(int j5 = 0; j5 < childwidget.height; j5++)
                     {
@@ -8261,7 +8261,7 @@ public class Main extends RSApplet {
                 }
         }
 
-        Raster.setDimensions(prevwidth, prevwidthoffset, prevheight, prevheightoffset);
+        BasicRasterizer.setDimensions(prevwidth, prevwidthoffset, prevheight, prevheightoffset);
     }
 
     public void method106(IndexedColorSprite class30_sub2_sub1_sub2, int i)
@@ -8394,7 +8394,7 @@ public class Main extends RSApplet {
             int k3 = buffer0.position;
             if(class30_sub2_sub4_sub1_sub2.name != null && class30_sub2_sub4_sub1_sub2.updated)
             {
-                long l3 = TextUtils.stringToLong(class30_sub2_sub4_sub1_sub2.name);
+                long l3 = TextTools.stringToLong(class30_sub2_sub4_sub1_sub2.name);
                 boolean flag = false;
                 if(j2 <= 1)
                 {
@@ -8722,7 +8722,7 @@ public class Main extends RSApplet {
                 pushMessage("Your ignore list is full. Max of 100 hit", 0, "", aBoolean991);
                 return;
             }
-            String s = TextUtils.formatUsername(-45804, TextUtils.longToString(l, (byte)-99));
+            String s = TextTools.formatUsername(-45804, TextTools.longToString(l, (byte)-99));
             for(int j = 0; j < amt_ignorehashes; j++)
                 if(ignore_hashes[j] == l)
                 {
@@ -8784,7 +8784,7 @@ public class Main extends RSApplet {
                     class30_sub1.anInt1294--;
                 if(class30_sub1.anInt1294 == 0)
                 {
-                    if(class30_sub1.anInt1299 < 0 || MapLoader.method178(class30_sub1.anInt1299, class30_sub1.anInt1301, 8))
+                    if(class30_sub1.anInt1299 < 0 || LandscapeLoader.method178(class30_sub1.anInt1299, class30_sub1.anInt1301, 8))
                     {
                         method142(class30_sub1.pallete_y, class30_sub1.cheight, class30_sub1.anInt1300, class30_sub1.anInt1301, class30_sub1.pallete_x, class30_sub1.type_num, class30_sub1.anInt1299, 4);
                         class30_sub1.removeDeque();
@@ -8793,7 +8793,7 @@ public class Main extends RSApplet {
                 {
                     if(class30_sub1.anInt1302 > 0)
                         class30_sub1.anInt1302--;
-                    if(class30_sub1.anInt1302 == 0 && class30_sub1.pallete_x >= 1 && class30_sub1.pallete_y >= 1 && class30_sub1.pallete_x <= 102 && class30_sub1.pallete_y <= 102 && (class30_sub1.objid < 0 || MapLoader.method178(class30_sub1.objid, class30_sub1.type, 8)))
+                    if(class30_sub1.anInt1302 == 0 && class30_sub1.pallete_x >= 1 && class30_sub1.pallete_y >= 1 && class30_sub1.pallete_x <= 102 && class30_sub1.pallete_y <= 102 && (class30_sub1.objid < 0 || LandscapeLoader.method178(class30_sub1.objid, class30_sub1.type, 8)))
                     {
                         method142(class30_sub1.pallete_y, class30_sub1.cheight, class30_sub1.rotation, class30_sub1.type, class30_sub1.pallete_x, class30_sub1.type_num, class30_sub1.objid, 4);
                         class30_sub1.anInt1302 = -1;
@@ -9190,8 +9190,8 @@ public class Main extends RSApplet {
                     value = localplayer.combatlevel;
                 if(opcode == 9)
                 {
-                    for(int l1 = 0; l1 < SkillConsts.amt_skills; l1++)
-                        if(SkillConsts.skill_active[l1])
+                    for(int l1 = 0; l1 < SkillConstants.amt_skills; l1++)
+                        if(SkillConstants.skill_active[l1])
                             value += anIntArray1044[l1];
                 }
                 if(opcode == 10)
@@ -9294,7 +9294,7 @@ public class Main extends RSApplet {
         if(anInt1021 == 2)
         {
             byte abyte0[] = mapback.colorindex;
-            int ai[] = Raster.output;
+            int ai[] = BasicRasterizer.output;
             int k2 = abyte0.length;
             for(int i5 = 0; i5 < k2; i5++)
                 if(abyte0[i5] == 0)
@@ -9356,7 +9356,7 @@ public class Main extends RSApplet {
                 int j1 = ((Mob) (class30_sub2_sub4_sub1_sub2)).fineposx / 32 - ((Mob) (localplayer)).fineposx / 32;
                 int l3 = ((Mob) (class30_sub2_sub4_sub1_sub2)).fineposy / 32 - ((Mob) (localplayer)).fineposy / 32;
                 boolean flag1 = false;
-                long l6 = TextUtils.stringToLong(class30_sub2_sub4_sub1_sub2.name);
+                long l6 = TextTools.stringToLong(class30_sub2_sub4_sub1_sub2.name);
                 for(int k6 = 0; k6 < amt_friendhashes; k6++)
                 {
                     if(l6 != friend_hashes[k6] || anIntArray826[k6] == 0)
@@ -9413,7 +9413,7 @@ public class Main extends RSApplet {
             int l4 = (anInt1262 * 4 + 2) - ((Mob) (localplayer)).fineposy / 32;
             drawOnMinimap(mapmarker0, j2, l4, false);
         }
-        Raster.drawQuadrilateral(97, 78, 3, 3, 0xffffff);
+        BasicRasterizer.drawQuadrilateral(97, 78, 3, 3, 0xffffff);
         toplefttext_imagefetcher.initialize(0);
     }
 
@@ -9799,7 +9799,7 @@ public class Main extends RSApplet {
             }
             b12_font.drawText2(false, true, c / 2 - 90, 0xffffff, "Username: " + username + ((userpass_swtch == 0) & (loopcycle % 40 < 20) ? "@yel@|" : ""), j);
             j += 15;
-            b12_font.drawText2(false, true, c / 2 - 88, 0xffffff, "Password: " + TextUtils.asteriskicide(password, 0) + ((userpass_swtch == 1) & (loopcycle % 40 < 20) ? "@yel@|" : ""), j);
+            b12_font.drawText2(false, true, c / 2 - 88, 0xffffff, "Password: " + TextTools.asteriskicide(password, 0) + ((userpass_swtch == 1) & (loopcycle % 40 < 20) ? "@yel@|" : ""), j);
             j += 15;
             if(!flag)
             {
@@ -10000,11 +10000,11 @@ public class Main extends RSApplet {
 						/* Object type 2: diagnol wall */
                         if(j12 == 2)
                         {
-                            class10.aActor_278 = new RSObject(k21, 4 + k14, 2, i19, (byte)7, l19, j18, k20, j17, false);
-                            class10.aActor_279 = new RSObject(k21, k14 + 1 & 3, 2, i19, (byte)7, l19, j18, k20, j17, false);
+                            class10.aActor_278 = new GameObject(k21, 4 + k14, 2, i19, (byte)7, l19, j18, k20, j17, false);
+                            class10.aActor_279 = new GameObject(k21, k14 + 1 & 3, 2, i19, (byte)7, l19, j18, k20, j17, false);
                         } else
                         {
-                            class10.aActor_278 = new RSObject(k21, k14, j12, i19, (byte)7, l19, j18, k20, j17, false);
+                            class10.aActor_278 = new GameObject(k21, k14, j12, i19, (byte)7, l19, j18, k20, j17, false);
                         }
                     }
                 }
@@ -10012,21 +10012,21 @@ public class Main extends RSApplet {
                 {
                     WallDecoration class26 = pallet.getWallDecoration(j4, 866, i7, cheight);
                     if(class26 != null)
-                        class26.wd_entity = new RSObject(class26.wd_objhash >> 14 & 0x7fff, 0, 4, i19, (byte)7, l19, j18, k20, j17, false);
+                        class26.wd_entity = new GameObject(class26.wd_objhash >> 14 & 0x7fff, 0, 4, i19, (byte)7, l19, j18, k20, j17, false);
                 }
                 if(j16 == 2)
                 {
-                    GeneralObject class28 = pallet.method298(j4, i7, (byte)4, cheight);
+                    GeneralEntity class28 = pallet.method298(j4, i7, (byte)4, cheight);
                     if(j12 == 11)
                         j12 = 10;
                     if(class28 != null)
-                        class28.aActor_521 = new RSObject(class28.anInt529 >> 14 & 0x7fff, k14, j12, i19, (byte)7, l19, j18, k20, j17, false);
+                        class28.aActor_521 = new GameObject(class28.anInt529 >> 14 & 0x7fff, k14, j12, i19, (byte)7, l19, j18, k20, j17, false);
                 }
                 if(j16 == 3)
                 {
                     FloorDecoration class49 = pallet.getFloorDecoration(i7, j4, cheight, 0);
                     if(class49 != null)
-                        class49.aActor_814 = new RSObject(class49.anInt815 >> 14 & 0x7fff, k14, 22, i19, (byte)7, l19, j18, k20, j17, false);
+                        class49.aActor_814 = new GameObject(class49.anInt815 >> 14 & 0x7fff, k14, 22, i19, (byte)7, l19, j18, k20, j17, false);
                 }
             }
             return;
@@ -10122,7 +10122,7 @@ public class Main extends RSApplet {
             {
                 i5 = i5 * 128 + 64;
                 l7 = l7 * 128 + 64;
-                GFX class30_sub2_sub4_sub3 = new GFX(cheight, loopcycle, 6, j15, k10, calculateTileHeight(i5, l7, cheight) - l12, l7, i5);
+                StillGraphic class30_sub2_sub4_sub3 = new StillGraphic(cheight, loopcycle, 6, j15, k10, calculateTileHeight(i5, l7, cheight) - l12, l7, i5);
                 gfxs_storage.addLast(class30_sub2_sub4_sub3);
             }
             return;
@@ -10191,7 +10191,7 @@ public class Main extends RSApplet {
         Palette.lowmemory = true;
         TriangleRasterizer.lowmemory = true;
         lowmemory = true;
-        MapLoader.lowmemory = true;
+        LandscapeLoader.lowmemory = true;
         ObjectDefinition.lowmemory = true;
     }
 
@@ -10447,7 +10447,7 @@ public class Main extends RSApplet {
                 int j3 = j;
                 if(j3 < 3 && (main_tilesettings[1][i1][i] & 2) == 2)
                     j3++;
-                MapLoader.method188(pallet, k, i, l, j3, collisionmaps[j], main_heightmap, i1, k1, j, (byte)93);
+                LandscapeLoader.method188(pallet, k, i, l, j3, collisionmaps[j], main_heightmap, i1, k1, j, (byte)93);
             }
         }
     }
@@ -10526,8 +10526,8 @@ public class Main extends RSApplet {
                 gameserver_sockethandler.readBytes(inbuffer.payload, 0, 1);
                 packetnum = inbuffer.payload[0] & 0xff;
                 if(packetencryption != null)
-                    packetnum = packetnum /*- packetencryption.poll() & 0xff*/;
-                packetsize = PacketConsts.incoming_sizes[packetnum];
+                    packetnum = packetnum - packetencryption.poll() & 0xff;
+                packetsize = PacketConstants.incoming_sizes[packetnum];
                 i--;
             }
 			/* Var byte */
@@ -10570,7 +10570,7 @@ public class Main extends RSApplet {
                 anInt1193 = inbuffer.getIntC(true);
                 pastlaginamountdays = inbuffer.getShort();
                 if(anInt1193 != 0 && anInt857 == -1) {
-                    signlink.dnslookup(TextUtils.getHostAddress(anInt1193, true));
+                    signlink.dnslookup(TextTools.getHostAddress(anInt1193, true));
                     method147(537);
                     char c = '\u028A';
                     if(anInt1167 != 201 || anInt1120 == 1)
@@ -11061,7 +11061,7 @@ public class Main extends RSApplet {
                 if(s.endsWith(":tradereq:"))
                 {
                     String s3 = s.substring(0, s.indexOf(":"));
-                    long l17 = TextUtils.stringToLong(s3);
+                    long l17 = TextTools.stringToLong(s3);
                     boolean flag2 = false;
                     for(int j27 = 0; j27 < amt_ignorehashes; j27++)
                     {
@@ -11077,7 +11077,7 @@ public class Main extends RSApplet {
                 if(s.endsWith(":duelreq:"))
                 {
                     String s4 = s.substring(0, s.indexOf(":"));
-                    long l18 = TextUtils.stringToLong(s4);
+                    long l18 = TextTools.stringToLong(s4);
                     boolean flag3 = false;
                     for(int k27 = 0; k27 < amt_ignorehashes; k27++)
                     {
@@ -11093,7 +11093,7 @@ public class Main extends RSApplet {
                 if(s.endsWith(":chalreq:"))
                 {
                     String s5 = s.substring(0, s.indexOf(":"));
-                    long l19 = TextUtils.stringToLong(s5);
+                    long l19 = TextTools.stringToLong(s5);
                     boolean flag4 = false;
                     for(int l27 = 0; l27 < amt_ignorehashes; l27++)
                     {
@@ -11133,7 +11133,7 @@ public class Main extends RSApplet {
             {
                 long l4 = inbuffer.getLong(-35089);
                 int i18 = inbuffer.getUByte();
-                String s7 = TextUtils.formatUsername(-45804, TextUtils.longToString(l4, (byte)-99));
+                String s7 = TextTools.formatUsername(-45804, TextTools.longToString(l4, (byte)-99));
                 for(int k24 = 0; k24 < amt_friendhashes; k24++)
                 {
                     if(l4 != friend_hashes[k24])
@@ -11318,12 +11318,12 @@ public class Main extends RSApplet {
                         if(l21 != 3)
                             s9 = Censor.censor(s9, 0);
                         if(l21 == 2 || l21 == 3)
-                            pushMessage(s9, 7, "@cr2@" + TextUtils.formatUsername(-45804, TextUtils.longToString(l5, (byte)-99)), aBoolean991);
+                            pushMessage(s9, 7, "@cr2@" + TextTools.formatUsername(-45804, TextTools.longToString(l5, (byte)-99)), aBoolean991);
                         else
                         if(l21 == 1)
-                            pushMessage(s9, 7, "@cr1@" + TextUtils.formatUsername(-45804, TextUtils.longToString(l5, (byte)-99)), aBoolean991);
+                            pushMessage(s9, 7, "@cr1@" + TextTools.formatUsername(-45804, TextTools.longToString(l5, (byte)-99)), aBoolean991);
                         else
-                            pushMessage(s9, 3, TextUtils.formatUsername(-45804, TextUtils.longToString(l5, (byte)-99)), aBoolean991);
+                            pushMessage(s9, 3, TextTools.formatUsername(-45804, TextTools.longToString(l5, (byte)-99)), aBoolean991);
                     }
                     catch(Exception exception1)
                     {
@@ -11797,7 +11797,7 @@ public class Main extends RSApplet {
             Model.anInt1687 = 0;
             Model.anInt1685 = super.mouse_x - 4;
             Model.anInt1686 = super.mouse_y - 4;
-            Raster.resetOutput();
+            BasicRasterizer.resetOutput();
             pallet.setDimensions(camerax, cameray, camerayaw$, cameraz, j, camerapitch$, false);
             pallet.method288((byte)104);
             updateMobGraphics(anInt898);
@@ -11850,7 +11850,7 @@ public class Main extends RSApplet {
         loginbuffer = Buffer.create(1);
         aBoolean848 = true;
         anInt857 = -1;
-        skillxp = new int[SkillConsts.amt_skills];
+        skillxp = new int[SkillConstants.amt_skills];
         aBoolean872 = false;
         cameratransvars = new int[5];
         anInt874 = -1;
@@ -11876,7 +11876,7 @@ public class Main extends RSApplet {
         aByteArray912 = new byte[16384];
         aByte920 = 14;
         anInt921 = 732;
-        skilllevels = new int[SkillConsts.amt_skills];
+        skilllevels = new int[SkillConstants.amt_skills];
         aByte923 = 25;
         ignore_hashes = new long[100];
         aBoolean926 = false;
@@ -11897,7 +11897,7 @@ public class Main extends RSApplet {
         spriteY = -1;
         anIntArray968 = new int[33];
         anIntArray969 = new int[256];
-        cacheindexes = new CacheIndex[5];
+        cacheindexes = new FileIndex[5];
         configstates = new int[2000];
         aBoolean972 = false;
         aByte973 = -74;
@@ -11926,7 +11926,7 @@ public class Main extends RSApplet {
         mapfunction = new DirectColorSprite[100];
         anInt1042 = -1;
         aBoolean1043 = false;
-        anIntArray1044 = new int[SkillConsts.amt_skills];
+        anIntArray1044 = new int[SkillConstants.amt_skills];
         configqueue = new int[2000];
         aBoolean1047 = true;
         anInt1050 = 111;
@@ -12079,7 +12079,7 @@ public class Main extends RSApplet {
     public boolean cameramovements[];
     public int anInt877;
     public int anInt878;
-    public WatchDog watchdog;
+    public Monitor watchdog;
     public volatile boolean runclient;
     public String aString881;
     public int anInt882;
@@ -12172,7 +12172,7 @@ public class Main extends RSApplet {
     public IndexedColorSprite aClass30_Sub2_Sub1_Sub2_967;
     public int anIntArray968[];
     public int anIntArray969[];
-    public CacheIndex cacheindexes[];
+    public FileIndex cacheindexes[];
     public int configstates[];
     public boolean aBoolean972;
     public byte aByte973;
@@ -12270,7 +12270,7 @@ public class Main extends RSApplet {
     public int anInt1050;
     public static int anInt1051;
     public int anIntArray1052[];
-    public ContainerArchive titlescreen_archive;
+    public FileContainer titlescreen_archive;
     public int anInt1054;
     public int anInt1055;
     public Deque gfxs_storage;
@@ -12388,7 +12388,7 @@ public class Main extends RSApplet {
     public ImageFetcher toplefttext_imagefetcher;
     public ImageFetcher chat_imagefetcher;
     public int anInt1167;
-    public SocketHandler gameserver_sockethandler;
+    public SocketWorker gameserver_sockethandler;
     public int anInt1169;
     public int anInt1170;
     public int anInt1171;
@@ -12497,10 +12497,10 @@ public class Main extends RSApplet {
     public String aString1267;
     public int anInt1268;
     public int anInt1269;
-    public RSFont p11_font;
-    public RSFont p12_font;
-    public RSFont b12_font;
-    public RSFont q8_font;
+    public BitmapFont p11_font;
+    public BitmapFont p12_font;
+    public BitmapFont b12_font;
+    public BitmapFont q8_font;
     public byte aByte1274;
     public int anInt1275;
     public int anInt1276;

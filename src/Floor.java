@@ -7,7 +7,7 @@ import sign.signlink;
 
 public class Floor {
 
-    public static void method260(int i, ContainerArchive class44) {
+    public static void method260(int i, FileContainer class44) {
         if(i != 0)
             anInt386 = 115;
         Buffer buffer0 = new Buffer(class44.getEntry("flo.dat", null));

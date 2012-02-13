@@ -7,7 +7,7 @@ import java.awt.image.PixelGrabber;
 import java.io.PrintStream;
 import sign.signlink;
 
-public class DirectColorSprite extends Raster {
+public class DirectColorSprite extends BasicRasterizer {
 
     public DirectColorSprite(int i, int j)
     {
@@ -38,7 +38,7 @@ public class DirectColorSprite extends Raster {
         }
     }
 
-    public DirectColorSprite(ContainerArchive class44, String s, int i)
+    public DirectColorSprite(FileContainer class44, String s, int i)
     {
         System.out.println(s);
         aBoolean1428 = false;
@@ -101,7 +101,7 @@ public class DirectColorSprite extends Raster {
 
     public void setOutput()
     {
-        Raster.setOutput(indexheight, indexwidth, pixels);
+        BasicRasterizer.setOutput(indexheight, indexwidth, pixels);
     }
 
     public void intensifyPixels(int r, int g, int b)
@@ -158,35 +158,35 @@ public class DirectColorSprite extends Raster {
     {
         x += offsetx;
         y += offsety;
-        int outoffset = x + y * Raster.outputwidth;
+        int outoffset = x + y * BasicRasterizer.outputwidth;
         int srcoffset = 0;
         int h = indexheight;
         int w = indexwidth;
-        int srcinc = Raster.outputwidth - w;
+        int srcinc = BasicRasterizer.outputwidth - w;
         int outinc = 0;
-        if(y < Raster.heightoffset)
+        if(y < BasicRasterizer.heightoffset)
         {
-            int j2 = Raster.heightoffset - y;
+            int j2 = BasicRasterizer.heightoffset - y;
             h -= j2;
-            y = Raster.heightoffset;
+            y = BasicRasterizer.heightoffset;
             srcoffset += j2 * w;
-            outoffset += j2 * Raster.outputwidth;
+            outoffset += j2 * BasicRasterizer.outputwidth;
         }
-        if(y + h > Raster.height)
-            h -= (y + h) - Raster.height;
-        if(x < Raster.widthoffset)
+        if(y + h > BasicRasterizer.height)
+            h -= (y + h) - BasicRasterizer.height;
+        if(x < BasicRasterizer.widthoffset)
         {
-            int k2 = Raster.widthoffset - x;
+            int k2 = BasicRasterizer.widthoffset - x;
             w -= k2;
-            x = Raster.widthoffset;
+            x = BasicRasterizer.widthoffset;
             srcoffset += k2;
             outoffset += k2;
             outinc += k2;
             srcinc += k2;
         }
-        if(x + w > Raster.width)
+        if(x + w > BasicRasterizer.width)
         {
-            int l2 = (x + w) - Raster.width;
+            int l2 = (x + w) - BasicRasterizer.width;
             w -= l2;
             outinc += l2;
             srcinc += l2;
@@ -196,7 +196,7 @@ public class DirectColorSprite extends Raster {
             return;
         } else
         {
-            draw(Raster.output,pixels, outoffset, srcoffset, srcinc, outinc, w, h);
+            draw(BasicRasterizer.output,pixels, outoffset, srcoffset, srcinc, outinc, w, h);
             return;
         }
     }
@@ -224,35 +224,35 @@ public class DirectColorSprite extends Raster {
         k += offsety;
         if(j != 16083)
             return;
-        int l = i + k * Raster.outputwidth;
+        int l = i + k * BasicRasterizer.outputwidth;
         int i1 = 0;
         int j1 = indexheight;
         int k1 = indexwidth;
-        int l1 = Raster.outputwidth - k1;
+        int l1 = BasicRasterizer.outputwidth - k1;
         int i2 = 0;
-        if(k < Raster.heightoffset)
+        if(k < BasicRasterizer.heightoffset)
         {
-            int j2 = Raster.heightoffset - k;
+            int j2 = BasicRasterizer.heightoffset - k;
             j1 -= j2;
-            k = Raster.heightoffset;
+            k = BasicRasterizer.heightoffset;
             i1 += j2 * k1;
-            l += j2 * Raster.outputwidth;
+            l += j2 * BasicRasterizer.outputwidth;
         }
-        if(k + j1 > Raster.height)
-            j1 -= (k + j1) - Raster.height;
-        if(i < Raster.widthoffset)
+        if(k + j1 > BasicRasterizer.height)
+            j1 -= (k + j1) - BasicRasterizer.height;
+        if(i < BasicRasterizer.widthoffset)
         {
-            int k2 = Raster.widthoffset - i;
+            int k2 = BasicRasterizer.widthoffset - i;
             k1 -= k2;
-            i = Raster.widthoffset;
+            i = BasicRasterizer.widthoffset;
             i1 += k2;
             l += k2;
             i2 += k2;
             l1 += k2;
         }
-        if(i + k1 > Raster.width)
+        if(i + k1 > BasicRasterizer.width)
         {
-            int l2 = (i + k1) - Raster.width;
+            int l2 = (i + k1) - BasicRasterizer.width;
             k1 -= l2;
             i2 += l2;
             l1 += l2;
@@ -262,7 +262,7 @@ public class DirectColorSprite extends Raster {
             return;
         } else
         {
-            drawOverlay(Raster.output, pixels, 0, i1, l, k1, j1, l1, i2);
+            drawOverlay(BasicRasterizer.output, pixels, 0, i1, l, k1, j1, l1, i2);
             return;
         }
     }
@@ -315,35 +315,35 @@ public class DirectColorSprite extends Raster {
     {
         x += offsetx;
         y += offsety;
-        int i1 = x + y * Raster.outputwidth;
+        int i1 = x + y * BasicRasterizer.outputwidth;
         int j1 = 0;
         int indexh = indexheight;
         int indexw = indexwidth;
-        int i2 = Raster.outputwidth - indexw;
+        int i2 = BasicRasterizer.outputwidth - indexw;
         int j2 = 0;
-        if(y < Raster.heightoffset)
+        if(y < BasicRasterizer.heightoffset)
         {
-            int k2 = Raster.heightoffset - y;
+            int k2 = BasicRasterizer.heightoffset - y;
             indexh -= k2;
-            y = Raster.heightoffset;
+            y = BasicRasterizer.heightoffset;
             j1 += k2 * indexw;
-            i1 += k2 * Raster.outputwidth;
+            i1 += k2 * BasicRasterizer.outputwidth;
         }
-        if(y + indexh > Raster.height)
-            indexh -= (y + indexh) - Raster.height;
-        if(x < Raster.widthoffset)
+        if(y + indexh > BasicRasterizer.height)
+            indexh -= (y + indexh) - BasicRasterizer.height;
+        if(x < BasicRasterizer.widthoffset)
         {
-            int l2 = Raster.widthoffset - x;
+            int l2 = BasicRasterizer.widthoffset - x;
             indexw -= l2;
-            x = Raster.widthoffset;
+            x = BasicRasterizer.widthoffset;
             j1 += l2;
             i1 += l2;
             j2 += l2;
             i2 += l2;
         }
-        if(x + indexw > Raster.width)
+        if(x + indexw > BasicRasterizer.width)
         {
-            int i3 = (x + indexw) - Raster.width;
+            int i3 = (x + indexw) - BasicRasterizer.width;
             indexw -= i3;
             j2 += i3;
             i2 += i3;
@@ -353,7 +353,7 @@ public class DirectColorSprite extends Raster {
             return;
         } else
         {
-            drawBlended(j1, indexw, Raster.output, 0, pixels, j2, indexh, i2, k, i1, 8);
+            drawBlended(j1, indexw, BasicRasterizer.output, 0, pixels, j2, indexh, i2, k, i1, 8);
             return;
         }
     }
@@ -396,7 +396,7 @@ public class DirectColorSprite extends Raster {
             cosine = cosine * k >> 8;
             int j3 = (i2 << 16) + (k2 * sine + j2 * cosine);
             int k3 = (i1 << 16) + (k2 * cosine - j2 * sine);
-            int offset = x + y * Raster.outputwidth;
+            int offset = x + y * BasicRasterizer.outputwidth;
             for(y = 0; y < i; y++)
             {
                 int i4 = ai1[y];
@@ -405,13 +405,13 @@ public class DirectColorSprite extends Raster {
                 int oy = k3 - sine * i4;
                 for(x = -ai[y]; x < 0; x++)
                 {
-                    Raster.output[j4++] = pixels[(ox >> 16) + (oy >> 16) * indexwidth];
+                    BasicRasterizer.output[j4++] = pixels[(ox >> 16) + (oy >> 16) * indexwidth];
                     ox += cosine;
                     oy -= sine;
                 }
                 j3 += sine;
                 k3 += cosine;
-                offset += Raster.outputwidth;
+                offset += BasicRasterizer.outputwidth;
             }
 
             return;
@@ -433,7 +433,7 @@ public class DirectColorSprite extends Raster {
             l2 = l2 * j1 >> 8;
             int i3 = (l << 16) + (j2 * k2 + i2 * l2);
             int j3 = (j << 16) + (j2 * l2 - i2 * k2);
-            int offset = x + y * Raster.outputwidth;
+            int offset = x + y * BasicRasterizer.outputwidth;
             for(y = 0; y < k1; y++)
             {
                 int o = offset;
@@ -443,7 +443,7 @@ public class DirectColorSprite extends Raster {
                 {
                     int k4 = pixels[(ox >> 16) + (oy >> 16) * indexwidth];
                     if(k4 != 0)
-                        Raster.output[o++] = k4;
+                        BasicRasterizer.output[o++] = k4;
                     else
                         o++;
                     ox += l2;
@@ -452,7 +452,7 @@ public class DirectColorSprite extends Raster {
 
                 i3 += k2;
                 j3 += l2;
-                offset += Raster.outputwidth;
+                offset += BasicRasterizer.outputwidth;
             }
 
             return;
@@ -467,37 +467,37 @@ public class DirectColorSprite extends Raster {
     {
         j += offsetx;
         i += offsety;
-        int k = j + i * Raster.outputwidth;
+        int k = j + i * BasicRasterizer.outputwidth;
         int l = 0;
         if(flag)
             anInt1429 = -364;
         int i1 = indexheight;
         int j1 = indexwidth;
-        int k1 = Raster.outputwidth - j1;
+        int k1 = BasicRasterizer.outputwidth - j1;
         int l1 = 0;
-        if(i < Raster.heightoffset)
+        if(i < BasicRasterizer.heightoffset)
         {
-            int i2 = Raster.heightoffset - i;
+            int i2 = BasicRasterizer.heightoffset - i;
             i1 -= i2;
-            i = Raster.heightoffset;
+            i = BasicRasterizer.heightoffset;
             l += i2 * j1;
-            k += i2 * Raster.outputwidth;
+            k += i2 * BasicRasterizer.outputwidth;
         }
-        if(i + i1 > Raster.height)
-            i1 -= (i + i1) - Raster.height;
-        if(j < Raster.widthoffset)
+        if(i + i1 > BasicRasterizer.height)
+            i1 -= (i + i1) - BasicRasterizer.height;
+        if(j < BasicRasterizer.widthoffset)
         {
-            int j2 = Raster.widthoffset - j;
+            int j2 = BasicRasterizer.widthoffset - j;
             j1 -= j2;
-            j = Raster.widthoffset;
+            j = BasicRasterizer.widthoffset;
             l += j2;
             k += j2;
             l1 += j2;
             k1 += j2;
         }
-        if(j + j1 > Raster.width)
+        if(j + j1 > BasicRasterizer.width)
         {
-            int k2 = (j + j1) - Raster.width;
+            int k2 = (j + j1) - BasicRasterizer.width;
             j1 -= k2;
             l1 += k2;
             k1 += k2;
@@ -507,7 +507,7 @@ public class DirectColorSprite extends Raster {
             return;
         } else
         {
-            drawIndexedOverlay(pixels, j1, class30_sub2_sub1_sub2.colorindex, i1, Raster.output, 0, k1, k, l1, l);
+            drawIndexedOverlay(pixels, j1, class30_sub2_sub1_sub2.colorindex, i1, BasicRasterizer.output, 0, k1, k, l1, l);
             return;
         }
     }

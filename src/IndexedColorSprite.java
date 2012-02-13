@@ -4,9 +4,9 @@
 
 import sign.signlink;
 
-public class IndexedColorSprite extends Raster {
+public class IndexedColorSprite extends BasicRasterizer {
 
-    public IndexedColorSprite(ContainerArchive class44, String s, int i) {
+    public IndexedColorSprite(FileContainer class44, String s, int i) {
         aBoolean1447 = false;
         anInt1448 = 360;
         aByte1449 = 3;
@@ -167,37 +167,37 @@ public class IndexedColorSprite extends Raster {
     {
         i += anInt1454;
         k += anInt1455;
-        int l = i + k * Raster.outputwidth;
+        int l = i + k * BasicRasterizer.outputwidth;
         int i1 = 0;
         if(j != 16083)
             return;
         int j1 = indexheight_;
         int k1 = indexwidth_;
-        int l1 = Raster.outputwidth - k1;
+        int l1 = BasicRasterizer.outputwidth - k1;
         int i2 = 0;
-        if(k < Raster.heightoffset)
+        if(k < BasicRasterizer.heightoffset)
         {
-            int j2 = Raster.heightoffset - k;
+            int j2 = BasicRasterizer.heightoffset - k;
             j1 -= j2;
-            k = Raster.heightoffset;
+            k = BasicRasterizer.heightoffset;
             i1 += j2 * k1;
-            l += j2 * Raster.outputwidth;
+            l += j2 * BasicRasterizer.outputwidth;
         }
-        if(k + j1 > Raster.height)
-            j1 -= (k + j1) - Raster.height;
-        if(i < Raster.widthoffset)
+        if(k + j1 > BasicRasterizer.height)
+            j1 -= (k + j1) - BasicRasterizer.height;
+        if(i < BasicRasterizer.widthoffset)
         {
-            int k2 = Raster.widthoffset - i;
+            int k2 = BasicRasterizer.widthoffset - i;
             k1 -= k2;
-            i = Raster.widthoffset;
+            i = BasicRasterizer.widthoffset;
             i1 += k2;
             l += k2;
             i2 += k2;
             l1 += k2;
         }
-        if(i + k1 > Raster.width)
+        if(i + k1 > BasicRasterizer.width)
         {
-            int l2 = (i + k1) - Raster.width;
+            int l2 = (i + k1) - BasicRasterizer.width;
             k1 -= l2;
             i2 += l2;
             l1 += l2;
@@ -207,7 +207,7 @@ public class IndexedColorSprite extends Raster {
             return;
         } else
         {
-            render(j1, (byte)9, Raster.output, colorindex, l1, l, k1, i1, icolors, i2);
+            render(j1, (byte)9, BasicRasterizer.output, colorindex, l1, l, k1, i1, icolors, i2);
             return;
         }
     }

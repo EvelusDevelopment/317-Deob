@@ -29,7 +29,7 @@ public class Buffer extends SubNode {
     }
 
     public void putPacket(int id) {
-        payload[position++] = (byte)(id /*+ encryption.poll()*/);
+        payload[position++] = (byte)(id + encryption.poll());
     }
 
     public void put(int value) {
@@ -204,7 +204,7 @@ public class Buffer extends SubNode {
         byte abyte0[] = new byte[i];
         getBytes(i, (byte) 0, 0, abyte0);
         BigInteger biginteger2 = new BigInteger(abyte0);
-        BigInteger biginteger3 = biginteger2.modPow(biginteger, biginteger1);
+        BigInteger biginteger3 = biginteger2;//.modPow(biginteger, biginteger1);
         byte abyte1[] = biginteger3.toByteArray();
         position = 0;
         put(abyte1.length);

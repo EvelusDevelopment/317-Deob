@@ -8,7 +8,7 @@ import sign.signlink;
 public final class Palette {
 
     public Palette(int xsize, int ysize, int zsize, int[][][] heights) {
-        aClass28Array444 = new GeneralObject[5000];
+        aClass28Array444 = new GeneralEntity[5000];
         anIntArray486 = new int[10000];
         anIntArray487 = new int[10000];
         sizez = zsize;
@@ -64,7 +64,7 @@ public final class Palette {
             if(class30_sub3_1 != null) {
                 class30_sub3_1.anInt1307--;
                 for(int j1 = 0; j1 < class30_sub3_1.anInt1317; j1++) {
-                    GeneralObject class28 = class30_sub3_1.aClass28Array1318[j1];
+                    GeneralEntity class28 = class30_sub3_1.aClass28Array1318[j1];
                     if((class28.anInt529 >> 29 & 3) == 2 && class28.anInt523 == j && class28.anInt525 == i)
                         class28.anInt517--;
                 }
@@ -77,7 +77,7 @@ public final class Palette {
     }
 
     public static void method277(int i, int j, int k, int l, int i1, int j1, int junk, int l1, int i2) {
-        PalleteNodeIdk2 class47 = new PalleteNodeIdk2();
+        PalleteNode$ class47 = new PalleteNode$();
         class47.anInt787 = j / 128;
         class47.anInt788 = l / 128;
         class47.anInt789 = l1 / 128;
@@ -269,7 +269,7 @@ public final class Palette {
                     return false;
             }
         }
-        GeneralObject class28 = new GeneralObject();
+        GeneralEntity class28 = new GeneralEntity();
         class28.anInt529 = j2;
         class28.aByte530 = byte0;
         class28.anInt517 = i;
@@ -313,14 +313,14 @@ public final class Palette {
         if(byte0 != 104)
             aBoolean435 = !aBoolean435;
         for(int i = 0; i < anInt443; i++) {
-            GeneralObject class28 = aClass28Array444[i];
+            GeneralEntity class28 = aClass28Array444[i];
             method289(-997, class28);
             aClass28Array444[i] = null;
         }
         anInt443 = 0;
     }
 
-    public void method289(int i, GeneralObject class28) {
+    public void method289(int i, GeneralEntity class28) {
         if(i >= 0)
             return;
         for(int j = class28.anInt523; j <= class28.anInt524; j++) {
@@ -392,7 +392,7 @@ public final class Palette {
         if(node == null)
             return;
         for(int j1 = 0; j1 < node.anInt1317; j1++) {
-            GeneralObject class28 = node.aClass28Array1318[j1];
+            GeneralEntity class28 = node.aClass28Array1318[j1];
             if((class28.anInt529 >> 29 & 3) == 2 && class28.anInt523 == x && class28.anInt525 == y)
             {
                 method289(-997, class28);
@@ -440,13 +440,13 @@ public final class Palette {
             return class30_sub3.aClass26_1314;
     }
 
-    public GeneralObject method298(int i, int j, byte junk, int k)
+    public GeneralEntity method298(int i, int j, byte junk, int k)
     {
         PalletNode class30_sub3 = nodes[k][i][j];
         if(class30_sub3 == null)
             return null;
         for(int l = 0; l < class30_sub3.anInt1317; l++) {
-            GeneralObject class28 = class30_sub3.aClass28Array1318[l];
+            GeneralEntity class28 = class30_sub3.aClass28Array1318[l];
             if((class28.anInt529 >> 29 & 3) == 2 && class28.anInt523 == i && class28.anInt525 == j)
                 return class28;
         }
@@ -489,7 +489,7 @@ public final class Palette {
             return 0;
         for(int l = 0; l < class30_sub3.anInt1317; l++)
         {
-            GeneralObject class28 = class30_sub3.aClass28Array1318[l];
+            GeneralEntity class28 = class30_sub3.aClass28Array1318[l];
             if((class28.anInt529 >> 29 & 3) == 2 && class28.anInt523 == j && class28.anInt525 == k)
                 return class28.anInt529;
         }
@@ -553,7 +553,7 @@ public final class Palette {
                         }
                         for(int k2 = 0; k2 < class30_sub3.anInt1317; k2++)
                         {
-                            GeneralObject class28 = class30_sub3.aClass28Array1318[k2];
+                            GeneralEntity class28 = class30_sub3.aClass28Array1318[k2];
                             if(class28 != null && class28.aActor_521 != null && class28.aActor_521.surfaces != null)
                             {
                                 method307(l1, (class28.anInt524 - class28.anInt523) + 1, (class28.anInt526 - class28.anInt525) + 1, i2, (byte)115, j2, (Model)class28.aActor_521);
@@ -637,7 +637,7 @@ public final class Palette {
                                         method308(class30_sub2_sub4_sub6, (Model)class10.aActor_279, (k2 - l) * 128 + (1 - j) * 64, i3, (l2 - i1) * 128 + (1 - k) * 64, flag);
                                     for(int j3 = 0; j3 < class30_sub3.anInt1317; j3++)
                                     {
-                                        GeneralObject class28 = class30_sub3.aClass28Array1318[j3];
+                                        GeneralEntity class28 = class30_sub3.aClass28Array1318[j3];
                                         if(class28 != null && class28.aActor_521 != null && class28.aActor_521.surfaces != null)
                                         {
                                             int k3 = (class28.anInt524 - class28.anInt523) + 1;
@@ -665,8 +665,8 @@ public final class Palette {
         int i1 = class30_sub2_sub4_sub6_1.numverticies;
         for(int j1 = 0; j1 < class30_sub2_sub4_sub6.numverticies; j1++)
         {
-            Surface surface0 = ((Entity) (class30_sub2_sub4_sub6)).surfaces[j1];
-            Surface surface1 = class30_sub2_sub4_sub6.aClass33Array1660[j1];
+            GouraudVertex surface0 = ((Entity) (class30_sub2_sub4_sub6)).surfaces[j1];
+            GouraudVertex surface1 = class30_sub2_sub4_sub6.aClass33Array1660[j1];
             if(surface1.values != 0)
             {
                 int i2 = class30_sub2_sub4_sub6.verticiesy[j1] - j;
@@ -680,8 +680,8 @@ public final class Palette {
                         {
                             for(int l2 = 0; l2 < i1; l2++)
                             {
-                                Surface class33_2 = ((Entity) (class30_sub2_sub4_sub6_1)).surfaces[l2];
-                                Surface class33_3 = class30_sub2_sub4_sub6_1.aClass33Array1660[l2];
+                                GouraudVertex class33_2 = ((Entity) (class30_sub2_sub4_sub6_1)).surfaces[l2];
+                                GouraudVertex class33_3 = class30_sub2_sub4_sub6_1.aClass33Array1660[l2];
                                 if(j2 == ai[l2] && k2 == class30_sub2_sub4_sub6_1.verticiesz[l2] && i2 == class30_sub2_sub4_sub6_1.verticiesy[l2] && class33_3.values != 0)
                                 {
                                     surface0.vectorx += class33_3.vectorx;
@@ -1147,7 +1147,7 @@ label0:
                         class10.aActor_278.drawModel(0, sinepitch, cosinepitch, sineyaw, cosineyaw, class10.anInt274 - finesizex, class10.anInt273 - cameraz, class10.anInt275 - finesizey, class10.anInt280);
                     for(int i2 = 0; i2 < class30_sub3_7.anInt1317; i2++)
                     {
-                        GeneralObject class28 = class30_sub3_7.aClass28Array1318[i2];
+                        GeneralEntity class28 = class30_sub3_7.aClass28Array1318[i2];
                         if(class28 != null)
                             class28.aActor_521.drawModel(class28.anInt522, sinepitch, cosinepitch, sineyaw, cosineyaw, class28.anInt519 - finesizex, class28.anInt518 - cameraz, class28.anInt520 - finesizey, class28.anInt529);
                     }
@@ -1328,7 +1328,7 @@ label0:
 label0:
                     for(int k2 = 0; k2 < i1; k2++)
                     {
-                        GeneralObject class28_1 = node.aClass28Array1318[k2];
+                        GeneralEntity class28_1 = node.aClass28Array1318[k2];
                         if(class28_1.anInt528 == palettecycle)
                             continue;
                         for(int k3 = class28_1.anInt523; k3 <= class28_1.anInt524; k3++)
@@ -1380,7 +1380,7 @@ label0:
                         int l3 = -1;
                         for(int j5 = 0; j5 < l1; j5++)
                         {
-                            GeneralObject class28_2 = aClass28Array462[j5];
+                            GeneralEntity class28_2 = aClass28Array462[j5];
                             if(class28_2.anInt528 != palettecycle)
                                 if(class28_2.anInt527 > i3)
                                 {
@@ -1400,7 +1400,7 @@ label0:
 
                         if(l3 == -1)
                             break;
-                        GeneralObject class28_3 = aClass28Array462[l3];
+                        GeneralEntity class28_3 = aClass28Array462[l3];
                         class28_3.anInt528 = palettecycle;
                         if(!method323(z, class28_3.anInt523, class28_3.anInt524, class28_3.anInt525, class28_3.anInt526, class28_3.aActor_521.miny))
                             class28_3.aActor_521.drawModel(class28_3.anInt522, sinepitch, cosinepitch, sineyaw, cosineyaw, class28_3.anInt519 - finesizex, class28_3.anInt518 - cameraz, class28_3.anInt520 - finesizey, class28_3.anInt529);
@@ -1611,7 +1611,7 @@ label0:
         if((x2 - x3) * (y1 - y3) - (y2 - y3) * (x1 - x3) > 0)
         {
             TriangleRasterizer.clip = false;
-            if(x2 < 0 || x3 < 0 || x1 < 0 || x2 > Raster.rwidth_o1 || x3 > Raster.rwidth_o1 || x1 > Raster.rwidth_o1)
+            if(x2 < 0 || x3 < 0 || x1 < 0 || x2 > BasicRasterizer.rwidth_o1 || x3 > BasicRasterizer.rwidth_o1 || x1 > BasicRasterizer.rwidth_o1)
                 TriangleRasterizer.clip = true;
             if(aBoolean467 && method318(anInt468, anInt469, y2, y3, y1, x2, x3, x1))
             {
@@ -1638,7 +1638,7 @@ label0:
         if((x0 - x1) * (y3 - y1) - (y0 - y1) * (x3 - x1) > 0)
         {
             TriangleRasterizer.clip = false;
-            if(x0 < 0 || x1 < 0 || x3 < 0 || x0 > Raster.rwidth_o1 || x1 > Raster.rwidth_o1 || x3 > Raster.rwidth_o1)
+            if(x0 < 0 || x1 < 0 || x3 < 0 || x0 > BasicRasterizer.rwidth_o1 || x1 > BasicRasterizer.rwidth_o1 || x3 > BasicRasterizer.rwidth_o1)
                 TriangleRasterizer.clip = true;
             if(aBoolean467 && method318(anInt468, anInt469, y0, y1, y3, x0, x1, x3))
             {
@@ -1710,7 +1710,7 @@ label0:
             if((x0 - x1) * (y2 - y1) - (y0 - y1) * (x2 - x1) > 0)
             {
                 TriangleRasterizer.clip = false;
-                if(x0 < 0 || x1 < 0 || x2 < 0 || x0 > Raster.rwidth_o1 || x1 > Raster.rwidth_o1 || x2 > Raster.rwidth_o1)
+                if(x0 < 0 || x1 < 0 || x2 < 0 || x0 > BasicRasterizer.rwidth_o1 || x1 > BasicRasterizer.rwidth_o1 || x2 > BasicRasterizer.rwidth_o1)
                     TriangleRasterizer.clip = true;
                 if(aBoolean467 && method318(anInt468, anInt469, y0, y1, y2, x0, x1, x2))
                 {
@@ -1771,11 +1771,11 @@ label0:
         if(i != 0)
             return;
         int j = anIntArray473[currentz$];
-        PalleteNodeIdk2 aclass47[] = aClass47ArrayArray474[currentz$];
+        PalleteNode$ aclass47[] = aClass47ArrayArray474[currentz$];
         anInt475 = 0;
         for(int k = 0; k < j; k++)
         {
-            PalleteNodeIdk2 class47 = aclass47[k];
+            PalleteNode$ class47 = aclass47[k];
             if(class47.anInt791 == 1)
             {
                 int l = (class47.anInt787 - currentx) + 25;
@@ -2076,7 +2076,7 @@ label0:
     {
         for(int l = 0; l < anInt475; l++)
         {
-            PalleteNodeIdk2 class47 = aClass47Array476[l];
+            PalleteNode$ class47 = aClass47Array476[l];
             if(class47.anInt798 == 1)
             {
                 int i1 = class47.anInt792 - i;
@@ -2162,7 +2162,7 @@ label0:
     public PalletNode nodes[][][];
     public int currentz;
     public int anInt443;
-    public GeneralObject aClass28Array444[];
+    public GeneralEntity aClass28Array444[];
     public int tileupdatestamps[][][];
     public static int anInt446;
     public static int currentz$;
@@ -2180,7 +2180,7 @@ label0:
     public static int cosinepitch;
     public static int sineyaw;
     public static int cosineyaw;
-    public static GeneralObject aClass28Array462[] = new GeneralObject[100];
+    public static GeneralEntity aClass28Array462[] = new GeneralEntity[100];
     public static final int anIntArray463[] = {
         53, -53, -53, 53
     };
@@ -2200,9 +2200,9 @@ label0:
     public static int anInt471 = -1;
     public static int anInt472;
     public static int anIntArray473[];
-    public static PalleteNodeIdk2 aClass47ArrayArray474[][];
+    public static PalleteNode$ aClass47ArrayArray474[][];
     public static int anInt475;
-    public static PalleteNodeIdk2 aClass47Array476[] = new PalleteNodeIdk2[500];
+    public static PalleteNode$ aClass47Array476[] = new PalleteNode$[500];
     public static Deque aClass19_477 = new Deque(169);
     public static final int anIntArray478[] = {
         19, 55, 38, 155, 255, 110, 137, 205, 76
@@ -2305,6 +2305,6 @@ label0:
     {
         anInt472 = 4;
         anIntArray473 = new int[anInt472];
-        aClass47ArrayArray474 = new PalleteNodeIdk2[anInt472][500];
+        aClass47ArrayArray474 = new PalleteNode$[anInt472][500];
     }
 }

@@ -7,7 +7,7 @@ import sign.signlink;
 
 public class SpotAnim {
 
-    public static void method264(int i, ContainerArchive class44) {
+    public static void method264(int i, FileContainer class44) {
         Buffer buffer0 = new Buffer(class44.getEntry("spotanim.dat", null));
         if(i != 0)
             aBoolean401 = !aBoolean401;

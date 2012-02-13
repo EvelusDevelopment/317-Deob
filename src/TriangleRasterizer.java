@@ -4,7 +4,7 @@
 
 import sign.signlink;
 
-public class TriangleRasterizer extends Raster {
+public class TriangleRasterizer extends BasicRasterizer {
 
     public static void destroy(int junk) {
         GRADIENTTABLE = null;
@@ -23,11 +23,11 @@ public class TriangleRasterizer extends Raster {
     }
 
     public static void setDimensions() {
-        heightoffsets = new int[Raster.outputheight];
-        for(int j = 0; j < Raster.outputheight; j++)
-            heightoffsets[j] = Raster.outputwidth * j;
-        midwidth = Raster.outputwidth / 2;
-        midheight = Raster.outputheight / 2;
+        heightoffsets = new int[BasicRasterizer.outputheight];
+        for(int j = 0; j < BasicRasterizer.outputheight; j++)
+            heightoffsets[j] = BasicRasterizer.outputwidth * j;
+        midwidth = BasicRasterizer.outputwidth / 2;
+        midheight = BasicRasterizer.outputheight / 2;
     }
 
     public static void setDimensions(int junk, int width, int height) {
@@ -57,7 +57,7 @@ public class TriangleRasterizer extends Raster {
         }
     }
 
-    public static void unpackTextures(ContainerArchive archive)
+    public static void unpackTextures(FileContainer archive)
     {
         anInt1473 = 0;
         for(int j = 0; j < 50; j++)
@@ -303,12 +303,12 @@ public class TriangleRasterizer extends Raster {
         }
         if(y0 <= y1 && y0 <= y2)
         {
-            if(y0 >= Raster.height)
+            if(y0 >= BasicRasterizer.height)
                 return;
-            if(y1 > Raster.height)
-                y1 = Raster.height;
-            if(y2 > Raster.height)
-                y2 = Raster.height;
+            if(y1 > BasicRasterizer.height)
+                y1 = BasicRasterizer.height;
+            if(y2 > BasicRasterizer.height)
+                y2 = BasicRasterizer.height;
             if(y1 < y2)
             {
                 x2 = x1 <<= 16;
@@ -333,9 +333,9 @@ public class TriangleRasterizer extends Raster {
                 {
                     y2 -= y1;
                     y1 -= y0;
-                    for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += Raster.outputwidth)
+                    for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += BasicRasterizer.outputwidth)
                     {
-                        drawShadedLine(Raster.output, x2 >> 16, x1 >> 16, y0, 0, 0, s2 >> 7, s1 >> 7);
+                        drawShadedLine(BasicRasterizer.output, x2 >> 16, x1 >> 16, y0, 0, 0, s2 >> 7, s1 >> 7);
                         x2 += prate2;
                         x1 += prate0;
                         s2 += srate2;
@@ -344,20 +344,20 @@ public class TriangleRasterizer extends Raster {
 
                     while(--y2 >= 0)
                     {
-                        drawShadedLine(Raster.output, x2 >> 16, x0 >> 16, y0, 0, 0, s2 >> 7, s0 >> 7);
+                        drawShadedLine(BasicRasterizer.output, x2 >> 16, x0 >> 16, y0, 0, 0, s2 >> 7, s0 >> 7);
                         x2 += prate2;
                         x0 += prate1;
                         s2 += srate2;
                         s0 += srate1;
-                        y0 += Raster.outputwidth;
+                        y0 += BasicRasterizer.outputwidth;
                     }
                     return;
                 }
                 y2 -= y1;
                 y1 -= y0;
-                for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += Raster.outputwidth)
+                for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += BasicRasterizer.outputwidth)
                 {
-                    drawShadedLine(Raster.output, x1 >> 16, x2 >> 16, y0, 0, 0, s1 >> 7, s2 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x1 >> 16, x2 >> 16, y0, 0, 0, s1 >> 7, s2 >> 7);
                     x2 += prate2;
                     x1 += prate0;
                     s2 += srate2;
@@ -366,12 +366,12 @@ public class TriangleRasterizer extends Raster {
 
                 while(--y2 >= 0)
                 {
-                    drawShadedLine(Raster.output, x0 >> 16, x2 >> 16, y0, 0, 0, s0 >> 7, s2 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x0 >> 16, x2 >> 16, y0, 0, 0, s0 >> 7, s2 >> 7);
                     x2 += prate2;
                     x0 += prate1;
                     s2 += srate2;
                     s0 += srate1;
-                    y0 += Raster.outputwidth;
+                    y0 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
@@ -397,9 +397,9 @@ public class TriangleRasterizer extends Raster {
             {
                 y1 -= y2;
                 y2 -= y0;
-                for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += Raster.outputwidth)
+                for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += BasicRasterizer.outputwidth)
                 {
-                    drawShadedLine(Raster.output, x0 >> 16, x1 >> 16, y0, 0, 0, s0 >> 7, s1 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x0 >> 16, x1 >> 16, y0, 0, 0, s0 >> 7, s1 >> 7);
                     x0 += prate2;
                     x1 += prate0;
                     s0 += srate2;
@@ -408,20 +408,20 @@ public class TriangleRasterizer extends Raster {
 
                 while(--y1 >= 0)
                 {
-                    drawShadedLine(Raster.output, x2 >> 16, x1 >> 16, y0, 0, 0, s2 >> 7, s1 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x2 >> 16, x1 >> 16, y0, 0, 0, s2 >> 7, s1 >> 7);
                     x2 += prate1;
                     x1 += prate0;
                     s2 += srate1;
                     s1 += srate0;
-                    y0 += Raster.outputwidth;
+                    y0 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
             y1 -= y2;
             y2 -= y0;
-            for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += Raster.outputwidth)
+            for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += BasicRasterizer.outputwidth)
             {
-                drawShadedLine(Raster.output, x1 >> 16, x0 >> 16, y0, 0, 0, s1 >> 7, s0 >> 7);
+                drawShadedLine(BasicRasterizer.output, x1 >> 16, x0 >> 16, y0, 0, 0, s1 >> 7, s0 >> 7);
                 x0 += prate2;
                 x1 += prate0;
                 s0 += srate2;
@@ -430,23 +430,23 @@ public class TriangleRasterizer extends Raster {
 
             while(--y1 >= 0)
             {
-                drawShadedLine(Raster.output, x1 >> 16, x2 >> 16, y0, 0, 0, s1 >> 7, s2 >> 7);
+                drawShadedLine(BasicRasterizer.output, x1 >> 16, x2 >> 16, y0, 0, 0, s1 >> 7, s2 >> 7);
                 x2 += prate1;
                 x1 += prate0;
                 s2 += srate1;
                 s1 += srate0;
-                y0 += Raster.outputwidth;
+                y0 += BasicRasterizer.outputwidth;
             }
             return;
         }
         if(y1 <= y2)
         {
-            if(y1 >= Raster.height)
+            if(y1 >= BasicRasterizer.height)
                 return;
-            if(y2 > Raster.height)
-                y2 = Raster.height;
-            if(y0 > Raster.height)
-                y0 = Raster.height;
+            if(y2 > BasicRasterizer.height)
+                y2 = BasicRasterizer.height;
+            if(y0 > BasicRasterizer.height)
+                y0 = BasicRasterizer.height;
             if(y2 < y0)
             {
                 x1 = x0 <<= 16;
@@ -471,9 +471,9 @@ public class TriangleRasterizer extends Raster {
                 {
                     y0 -= y2;
                     y2 -= y1;
-                    for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += Raster.outputwidth)
+                    for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += BasicRasterizer.outputwidth)
                     {
-                        drawShadedLine(Raster.output, x1 >> 16, x0 >> 16, y1, 0, 0, s1 >> 7, s0 >> 7);
+                        drawShadedLine(BasicRasterizer.output, x1 >> 16, x0 >> 16, y1, 0, 0, s1 >> 7, s0 >> 7);
                         x1 += prate0;
                         x0 += prate1;
                         s1 += srate0;
@@ -482,20 +482,20 @@ public class TriangleRasterizer extends Raster {
 
                     while(--y0 >= 0)
                     {
-                        drawShadedLine(Raster.output, x1 >> 16, x2 >> 16, y1, 0, 0, s1 >> 7, s2 >> 7);
+                        drawShadedLine(BasicRasterizer.output, x1 >> 16, x2 >> 16, y1, 0, 0, s1 >> 7, s2 >> 7);
                         x1 += prate0;
                         x2 += prate2;
                         s1 += srate0;
                         s2 += srate2;
-                        y1 += Raster.outputwidth;
+                        y1 += BasicRasterizer.outputwidth;
                     }
                     return;
                 }
                 y0 -= y2;
                 y2 -= y1;
-                for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += Raster.outputwidth)
+                for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += BasicRasterizer.outputwidth)
                 {
-                    drawShadedLine(Raster.output, x0 >> 16, x1 >> 16, y1, 0, 0, s0 >> 7, s1 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x0 >> 16, x1 >> 16, y1, 0, 0, s0 >> 7, s1 >> 7);
                     x1 += prate0;
                     x0 += prate1;
                     s1 += srate0;
@@ -504,12 +504,12 @@ public class TriangleRasterizer extends Raster {
 
                 while(--y0 >= 0)
                 {
-                    drawShadedLine(Raster.output, x2 >> 16, x1 >> 16, y1, 0, 0, s2 >> 7, s1 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x2 >> 16, x1 >> 16, y1, 0, 0, s2 >> 7, s1 >> 7);
                     x1 += prate0;
                     x2 += prate2;
                     s1 += srate0;
                     s2 += srate2;
-                    y1 += Raster.outputwidth;
+                    y1 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
@@ -535,9 +535,9 @@ public class TriangleRasterizer extends Raster {
             {
                 y2 -= y0;
                 y0 -= y1;
-                for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += Raster.outputwidth)
+                for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += BasicRasterizer.outputwidth)
                 {
-                    drawShadedLine(Raster.output, x2 >> 16, x0 >> 16, y1, 0, 0, s2 >> 7, s0 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x2 >> 16, x0 >> 16, y1, 0, 0, s2 >> 7, s0 >> 7);
                     x2 += prate0;
                     x0 += prate1;
                     s2 += srate0;
@@ -546,20 +546,20 @@ public class TriangleRasterizer extends Raster {
 
                 while(--y2 >= 0)
                 {
-                    drawShadedLine(Raster.output, x1 >> 16, x0 >> 16, y1, 0, 0, s1 >> 7, s0 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x1 >> 16, x0 >> 16, y1, 0, 0, s1 >> 7, s0 >> 7);
                     x1 += prate2;
                     x0 += prate1;
                     s1 += srate2;
                     s0 += srate1;
-                    y1 += Raster.outputwidth;
+                    y1 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
             y2 -= y0;
             y0 -= y1;
-            for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += Raster.outputwidth)
+            for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += BasicRasterizer.outputwidth)
             {
-                drawShadedLine(Raster.output, x0 >> 16, x2 >> 16, y1, 0, 0, s0 >> 7, s2 >> 7);
+                drawShadedLine(BasicRasterizer.output, x0 >> 16, x2 >> 16, y1, 0, 0, s0 >> 7, s2 >> 7);
                 x2 += prate0;
                 x0 += prate1;
                 s2 += srate0;
@@ -568,21 +568,21 @@ public class TriangleRasterizer extends Raster {
 
             while(--y2 >= 0)
             {
-                drawShadedLine(Raster.output, x0 >> 16, x1 >> 16, y1, 0, 0, s0 >> 7, s1 >> 7);
+                drawShadedLine(BasicRasterizer.output, x0 >> 16, x1 >> 16, y1, 0, 0, s0 >> 7, s1 >> 7);
                 x1 += prate2;
                 x0 += prate1;
                 s1 += srate2;
                 s0 += srate1;
-                y1 += Raster.outputwidth;
+                y1 += BasicRasterizer.outputwidth;
             }
             return;
         }
-        if(y2 >= Raster.height)
+        if(y2 >= BasicRasterizer.height)
             return;
-        if(y0 > Raster.height)
-            y0 = Raster.height;
-        if(y1 > Raster.height)
-            y1 = Raster.height;
+        if(y0 > BasicRasterizer.height)
+            y0 = BasicRasterizer.height;
+        if(y1 > BasicRasterizer.height)
+            y1 = BasicRasterizer.height;
         if(y0 < y1)
         {
             x0 = x2 <<= 16;
@@ -607,9 +607,9 @@ public class TriangleRasterizer extends Raster {
             {
                 y1 -= y0;
                 y0 -= y2;
-                for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += Raster.outputwidth)
+                for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += BasicRasterizer.outputwidth)
                 {
-                    drawShadedLine(Raster.output, x0 >> 16, x2 >> 16, y2, 0, 0, s0 >> 7, s2 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x0 >> 16, x2 >> 16, y2, 0, 0, s0 >> 7, s2 >> 7);
                     x0 += prate1;
                     x2 += prate2;
                     s0 += srate1;
@@ -618,20 +618,20 @@ public class TriangleRasterizer extends Raster {
 
                 while(--y1 >= 0)
                 {
-                    drawShadedLine(Raster.output, x0 >> 16, x1 >> 16, y2, 0, 0, s0 >> 7, s1 >> 7);
+                    drawShadedLine(BasicRasterizer.output, x0 >> 16, x1 >> 16, y2, 0, 0, s0 >> 7, s1 >> 7);
                     x0 += prate1;
                     x1 += prate0;
                     s0 += srate1;
                     s1 += srate0;
-                    y2 += Raster.outputwidth;
+                    y2 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
             y1 -= y0;
             y0 -= y2;
-            for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += Raster.outputwidth)
+            for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += BasicRasterizer.outputwidth)
             {
-                drawShadedLine(Raster.output, x2 >> 16, x0 >> 16, y2, 0, 0, s2 >> 7, s0 >> 7);
+                drawShadedLine(BasicRasterizer.output, x2 >> 16, x0 >> 16, y2, 0, 0, s2 >> 7, s0 >> 7);
                 x0 += prate1;
                 x2 += prate2;
                 s0 += srate1;
@@ -640,12 +640,12 @@ public class TriangleRasterizer extends Raster {
 
             while(--y1 >= 0)
             {
-                drawShadedLine(Raster.output, x1 >> 16, x0 >> 16, y2, 0, 0, s1 >> 7, s0 >> 7);
+                drawShadedLine(BasicRasterizer.output, x1 >> 16, x0 >> 16, y2, 0, 0, s1 >> 7, s0 >> 7);
                 x0 += prate1;
                 x1 += prate0;
                 s0 += srate1;
                 s1 += srate0;
-                y2 += Raster.outputwidth;
+                y2 += BasicRasterizer.outputwidth;
             }
             return;
         }
@@ -671,9 +671,9 @@ public class TriangleRasterizer extends Raster {
         {
             y0 -= y1;
             y1 -= y2;
-            for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += Raster.outputwidth)
+            for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += BasicRasterizer.outputwidth)
             {
-                drawShadedLine(Raster.output, x1 >> 16, x2 >> 16, y2, 0, 0, s1 >> 7, s2 >> 7);
+                drawShadedLine(BasicRasterizer.output, x1 >> 16, x2 >> 16, y2, 0, 0, s1 >> 7, s2 >> 7);
                 x1 += prate1;
                 x2 += prate2;
                 s1 += srate1;
@@ -682,20 +682,20 @@ public class TriangleRasterizer extends Raster {
 
             while(--y0 >= 0)
             {
-                drawShadedLine(Raster.output, x0 >> 16, x2 >> 16, y2, 0, 0, s0 >> 7, s2 >> 7);
+                drawShadedLine(BasicRasterizer.output, x0 >> 16, x2 >> 16, y2, 0, 0, s0 >> 7, s2 >> 7);
                 x0 += prate0;
                 x2 += prate2;
                 s0 += srate0;
                 s2 += srate2;
-                y2 += Raster.outputwidth;
+                y2 += BasicRasterizer.outputwidth;
             }
             return;
         }
         y0 -= y1;
         y1 -= y2;
-        for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += Raster.outputwidth)
+        for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += BasicRasterizer.outputwidth)
         {
-            drawShadedLine(Raster.output, x2 >> 16, x1 >> 16, y2, 0, 0, s2 >> 7, s1 >> 7);
+            drawShadedLine(BasicRasterizer.output, x2 >> 16, x1 >> 16, y2, 0, 0, s2 >> 7, s1 >> 7);
             x1 += prate1;
             x2 += prate2;
             s1 += srate1;
@@ -704,12 +704,12 @@ public class TriangleRasterizer extends Raster {
 
         while(--y0 >= 0)
         {
-            drawShadedLine(Raster.output, x2 >> 16, x0 >> 16, y2, 0, 0, s2 >> 7, s0 >> 7);
+            drawShadedLine(BasicRasterizer.output, x2 >> 16, x0 >> 16, y2, 0, 0, s2 >> 7, s0 >> 7);
             x0 += prate0;
             x2 += prate2;
             s0 += srate0;
             s2 += srate2;
-            y2 += Raster.outputwidth;
+            y2 += BasicRasterizer.outputwidth;
         }
     }
 
@@ -724,8 +724,8 @@ public class TriangleRasterizer extends Raster {
                     increment = (shademax - shade) / (xmax - x);
                 else
                     increment = 0;
-                if(xmax > Raster.rwidth_o1)
-                    xmax = Raster.rwidth_o1;
+                if(xmax > BasicRasterizer.rwidth_o1)
+                    xmax = BasicRasterizer.rwidth_o1;
                 if(x < 0)
                 {
                     shade -= x * increment;
@@ -798,8 +798,8 @@ public class TriangleRasterizer extends Raster {
         int increment = (shademax - shade) / (xmax - x);
         if(clip)
         {
-            if(xmax > Raster.rwidth_o1)
-                xmax = Raster.rwidth_o1;
+            if(xmax > BasicRasterizer.rwidth_o1)
+                xmax = BasicRasterizer.rwidth_o1;
             if(x < 0)
             {
                 shade -= x * increment;
@@ -843,12 +843,12 @@ public class TriangleRasterizer extends Raster {
             rate3 = (x1 - x2 << 16) / (y1 - y2);
         if(y1 <= y0 && y1 <= y2)
         {
-            if(y1 >= Raster.height)
+            if(y1 >= BasicRasterizer.height)
                 return;
-            if(y0 > Raster.height)
-                y0 = Raster.height;
-            if(y2 > Raster.height)
-                y2 = Raster.height;
+            if(y0 > BasicRasterizer.height)
+                y0 = BasicRasterizer.height;
+            if(y2 > BasicRasterizer.height)
+                y2 = BasicRasterizer.height;
             if(y0 < y2)
             {
                 x2 = x1 <<= 16;
@@ -868,37 +868,37 @@ public class TriangleRasterizer extends Raster {
                 {
                     y2 -= y0;
                     y0 -= y1;
-                    for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += Raster.outputwidth)
+                    for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += BasicRasterizer.outputwidth)
                     {
-                        drawBasicLine(Raster.output, y1, x2 >> 16, x1 >> 16, 0, color);
+                        drawBasicLine(BasicRasterizer.output, y1, x2 >> 16, x1 >> 16, 0, color);
                         x2 += rate3;
                         x1 += rate0;
                     }
 
                     while(--y2 >= 0)
                     {
-                        drawBasicLine(Raster.output, y1, x2 >> 16, x0 >> 16, 0, color);
+                        drawBasicLine(BasicRasterizer.output, y1, x2 >> 16, x0 >> 16, 0, color);
                         x2 += rate3;
                         x0 += rate1;
-                        y1 += Raster.outputwidth;
+                        y1 += BasicRasterizer.outputwidth;
                     }
                     return;
                 }
                 y2 -= y0;
                 y0 -= y1;
-                for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += Raster.outputwidth)
+                for(y1 = heightoffsets[y1]; --y0 >= 0; y1 += BasicRasterizer.outputwidth)
                 {
-                    drawBasicLine(Raster.output, y1, x1 >> 16, x2 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y1, x1 >> 16, x2 >> 16, 0, color);
                     x2 += rate3;
                     x1 += rate0;
                 }
 
                 while(--y2 >= 0)
                 {
-                    drawBasicLine(Raster.output, y1, x0 >> 16, x2 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y1, x0 >> 16, x2 >> 16, 0, color);
                     x2 += rate3;
                     x0 += rate1;
-                    y1 += Raster.outputwidth;
+                    y1 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
@@ -919,48 +919,48 @@ public class TriangleRasterizer extends Raster {
             {
                 y0 -= y2;
                 y2 -= y1;
-                for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += Raster.outputwidth)
+                for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += BasicRasterizer.outputwidth)
                 {
-                    drawBasicLine(Raster.output, y1, x0 >> 16, x1 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y1, x0 >> 16, x1 >> 16, 0, color);
                     x0 += rate3;
                     x1 += rate0;
                 }
 
                 while(--y0 >= 0)
                 {
-                    drawBasicLine(Raster.output, y1, x2 >> 16, x1 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y1, x2 >> 16, x1 >> 16, 0, color);
                     x2 += rate1;
                     x1 += rate0;
-                    y1 += Raster.outputwidth;
+                    y1 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
             y0 -= y2;
             y2 -= y1;
-            for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += Raster.outputwidth)
+            for(y1 = heightoffsets[y1]; --y2 >= 0; y1 += BasicRasterizer.outputwidth)
             {
-                drawBasicLine(Raster.output, y1, x1 >> 16, x0 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y1, x1 >> 16, x0 >> 16, 0, color);
                 x0 += rate3;
                 x1 += rate0;
             }
 
             while(--y0 >= 0)
             {
-                drawBasicLine(Raster.output, y1, x1 >> 16, x2 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y1, x1 >> 16, x2 >> 16, 0, color);
                 x2 += rate1;
                 x1 += rate0;
-                y1 += Raster.outputwidth;
+                y1 += BasicRasterizer.outputwidth;
             }
             return;
         }
         if(y0 <= y2)
         {
-            if(y0 >= Raster.height)
+            if(y0 >= BasicRasterizer.height)
                 return;
-            if(y2 > Raster.height)
-                y2 = Raster.height;
-            if(y1 > Raster.height)
-                y1 = Raster.height;
+            if(y2 > BasicRasterizer.height)
+                y2 = BasicRasterizer.height;
+            if(y1 > BasicRasterizer.height)
+                y1 = BasicRasterizer.height;
             if(y2 < y1)
             {
                 x1 = x0 <<= 16;
@@ -980,37 +980,37 @@ public class TriangleRasterizer extends Raster {
                 {
                     y1 -= y2;
                     y2 -= y0;
-                    for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += Raster.outputwidth)
+                    for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += BasicRasterizer.outputwidth)
                     {
-                        drawBasicLine(Raster.output, y0, x1 >> 16, x0 >> 16, 0, color);
+                        drawBasicLine(BasicRasterizer.output, y0, x1 >> 16, x0 >> 16, 0, color);
                         x1 += rate0;
                         x0 += rate1;
                     }
 
                     while(--y1 >= 0)
                     {
-                        drawBasicLine(Raster.output, y0, x1 >> 16, x2 >> 16, 0, color);
+                        drawBasicLine(BasicRasterizer.output, y0, x1 >> 16, x2 >> 16, 0, color);
                         x1 += rate0;
                         x2 += rate3;
-                        y0 += Raster.outputwidth;
+                        y0 += BasicRasterizer.outputwidth;
                     }
                     return;
                 }
                 y1 -= y2;
                 y2 -= y0;
-                for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += Raster.outputwidth)
+                for(y0 = heightoffsets[y0]; --y2 >= 0; y0 += BasicRasterizer.outputwidth)
                 {
-                    drawBasicLine(Raster.output, y0, x0 >> 16, x1 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y0, x0 >> 16, x1 >> 16, 0, color);
                     x1 += rate0;
                     x0 += rate1;
                 }
 
                 while(--y1 >= 0)
                 {
-                    drawBasicLine(Raster.output, y0, x2 >> 16, x1 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y0, x2 >> 16, x1 >> 16, 0, color);
                     x1 += rate0;
                     x2 += rate3;
-                    y0 += Raster.outputwidth;
+                    y0 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
@@ -1031,46 +1031,46 @@ public class TriangleRasterizer extends Raster {
             {
                 y2 -= y1;
                 y1 -= y0;
-                for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += Raster.outputwidth)
+                for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += BasicRasterizer.outputwidth)
                 {
-                    drawBasicLine(Raster.output, y0, x2 >> 16, x0 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y0, x2 >> 16, x0 >> 16, 0, color);
                     x2 += rate0;
                     x0 += rate1;
                 }
 
                 while(--y2 >= 0)
                 {
-                    drawBasicLine(Raster.output, y0, x1 >> 16, x0 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y0, x1 >> 16, x0 >> 16, 0, color);
                     x1 += rate3;
                     x0 += rate1;
-                    y0 += Raster.outputwidth;
+                    y0 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
             y2 -= y1;
             y1 -= y0;
-            for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += Raster.outputwidth)
+            for(y0 = heightoffsets[y0]; --y1 >= 0; y0 += BasicRasterizer.outputwidth)
             {
-                drawBasicLine(Raster.output, y0, x0 >> 16, x2 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y0, x0 >> 16, x2 >> 16, 0, color);
                 x2 += rate0;
                 x0 += rate1;
             }
 
             while(--y2 >= 0)
             {
-                drawBasicLine(Raster.output, y0, x0 >> 16, x1 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y0, x0 >> 16, x1 >> 16, 0, color);
                 x1 += rate3;
                 x0 += rate1;
-                y0 += Raster.outputwidth;
+                y0 += BasicRasterizer.outputwidth;
             }
             return;
         }
-        if(y2 >= Raster.height)
+        if(y2 >= BasicRasterizer.height)
             return;
-        if(y1 > Raster.height)
-            y1 = Raster.height;
-        if(y0 > Raster.height)
-            y0 = Raster.height;
+        if(y1 > BasicRasterizer.height)
+            y1 = BasicRasterizer.height;
+        if(y0 > BasicRasterizer.height)
+            y0 = BasicRasterizer.height;
         if(y1 < y0)
         {
             x0 = x2 <<= 16;
@@ -1090,37 +1090,37 @@ public class TriangleRasterizer extends Raster {
             {
                 y0 -= y1;
                 y1 -= y2;
-                for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += Raster.outputwidth)
+                for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += BasicRasterizer.outputwidth)
                 {
-                    drawBasicLine(Raster.output, y2, x0 >> 16, x2 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y2, x0 >> 16, x2 >> 16, 0, color);
                     x0 += rate1;
                     x2 += rate3;
                 }
 
                 while(--y0 >= 0)
                 {
-                    drawBasicLine(Raster.output, y2, x0 >> 16, x1 >> 16, 0, color);
+                    drawBasicLine(BasicRasterizer.output, y2, x0 >> 16, x1 >> 16, 0, color);
                     x0 += rate1;
                     x1 += rate0;
-                    y2 += Raster.outputwidth;
+                    y2 += BasicRasterizer.outputwidth;
                 }
                 return;
             }
             y0 -= y1;
             y1 -= y2;
-            for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += Raster.outputwidth)
+            for(y2 = heightoffsets[y2]; --y1 >= 0; y2 += BasicRasterizer.outputwidth)
             {
-                drawBasicLine(Raster.output, y2, x2 >> 16, x0 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y2, x2 >> 16, x0 >> 16, 0, color);
                 x0 += rate1;
                 x2 += rate3;
             }
 
             while(--y0 >= 0)
             {
-                drawBasicLine(Raster.output, y2, x1 >> 16, x0 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y2, x1 >> 16, x0 >> 16, 0, color);
                 x0 += rate1;
                 x1 += rate0;
-                y2 += Raster.outputwidth;
+                y2 += BasicRasterizer.outputwidth;
             }
             return;
         }
@@ -1141,37 +1141,37 @@ public class TriangleRasterizer extends Raster {
         {
             y1 -= y0;
             y0 -= y2;
-            for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += Raster.outputwidth)
+            for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += BasicRasterizer.outputwidth)
             {
-                drawBasicLine(Raster.output, y2, x1 >> 16, x2 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y2, x1 >> 16, x2 >> 16, 0, color);
                 x1 += rate1;
                 x2 += rate3;
             }
 
             while(--y1 >= 0)
             {
-                drawBasicLine(Raster.output, y2, x0 >> 16, x2 >> 16, 0, color);
+                drawBasicLine(BasicRasterizer.output, y2, x0 >> 16, x2 >> 16, 0, color);
                 x0 += rate0;
                 x2 += rate3;
-                y2 += Raster.outputwidth;
+                y2 += BasicRasterizer.outputwidth;
             }
             return;
         }
         y1 -= y0;
         y0 -= y2;
-        for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += Raster.outputwidth)
+        for(y2 = heightoffsets[y2]; --y0 >= 0; y2 += BasicRasterizer.outputwidth)
         {
-            drawBasicLine(Raster.output, y2, x2 >> 16, x1 >> 16, 0, color);
+            drawBasicLine(BasicRasterizer.output, y2, x2 >> 16, x1 >> 16, 0, color);
             x1 += rate1;
             x2 += rate3;
         }
 
         while(--y1 >= 0)
         {
-            drawBasicLine(Raster.output, y2, x2 >> 16, x0 >> 16, 0, color);
+            drawBasicLine(BasicRasterizer.output, y2, x2 >> 16, x0 >> 16, 0, color);
             x0 += rate0;
             x2 += rate3;
-            y2 += Raster.outputwidth;
+            y2 += BasicRasterizer.outputwidth;
         }
     }
 
@@ -1179,8 +1179,8 @@ public class TriangleRasterizer extends Raster {
     {
         if(clip)
         {
-            if(xmax > Raster.rwidth_o1)
-                xmax = Raster.rwidth_o1;
+            if(xmax > BasicRasterizer.rwidth_o1)
+                xmax = BasicRasterizer.rwidth_o1;
             if(x < 0)
                 x = 0;
         }
@@ -1259,12 +1259,12 @@ public class TriangleRasterizer extends Raster {
         }
         if(i <= j && i <= k)
         {
-            if(i >= Raster.height)
+            if(i >= BasicRasterizer.height)
                 return;
-            if(j > Raster.height)
-                j = Raster.height;
-            if(k > Raster.height)
-                k = Raster.height;
+            if(j > BasicRasterizer.height)
+                j = BasicRasterizer.height;
+            if(k > BasicRasterizer.height)
+                k = BasicRasterizer.height;
             if(j < k)
             {
                 j1 = l <<= 16;
@@ -1296,24 +1296,24 @@ public class TriangleRasterizer extends Raster {
                     i = heightoffsets[i];
                     while(--j >= 0) 
                     {
-                        drawTexturedLine(Raster.output, ai, 0, 0, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                        drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                         j1 += i8;
                         l += i7;
                         i2 += j8;
                         k1 += j7;
-                        i += Raster.outputwidth;
+                        i += BasicRasterizer.outputwidth;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
                     }
                     while(--k >= 0) 
                     {
-                        drawTexturedLine(Raster.output, ai, 0, 0, i, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                        drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                         j1 += i8;
                         i1 += k7;
                         i2 += j8;
                         l1 += l7;
-                        i += Raster.outputwidth;
+                        i += BasicRasterizer.outputwidth;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
@@ -1325,24 +1325,24 @@ public class TriangleRasterizer extends Raster {
                 i = heightoffsets[i];
                 while(--j >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                     j1 += i8;
                     l += i7;
                     i2 += j8;
                     k1 += j7;
-                    i += Raster.outputwidth;
+                    i += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
                 }
                 while(--k >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, i, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                     j1 += i8;
                     i1 += k7;
                     i2 += j8;
                     l1 += l7;
-                    i += Raster.outputwidth;
+                    i += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
@@ -1378,24 +1378,24 @@ public class TriangleRasterizer extends Raster {
                 i = heightoffsets[i];
                 while(--k >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, i, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                     i1 += i8;
                     l += i7;
                     l1 += j8;
                     k1 += j7;
-                    i += Raster.outputwidth;
+                    i += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
                 }
                 while(--j >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                     j1 += k7;
                     l += i7;
                     i2 += l7;
                     k1 += j7;
-                    i += Raster.outputwidth;
+                    i += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
@@ -1407,24 +1407,24 @@ public class TriangleRasterizer extends Raster {
             i = heightoffsets[i];
             while(--k >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, i, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                 i1 += i8;
                 l += i7;
                 l1 += j8;
                 k1 += j7;
-                i += Raster.outputwidth;
+                i += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
             }
             while(--j >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                 j1 += k7;
                 l += i7;
                 i2 += l7;
                 k1 += j7;
-                i += Raster.outputwidth;
+                i += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
@@ -1433,12 +1433,12 @@ public class TriangleRasterizer extends Raster {
         }
         if(j <= k)
         {
-            if(j >= Raster.height)
+            if(j >= BasicRasterizer.height)
                 return;
-            if(k > Raster.height)
-                k = Raster.height;
-            if(i > Raster.height)
-                i = Raster.height;
+            if(k > BasicRasterizer.height)
+                k = BasicRasterizer.height;
+            if(i > BasicRasterizer.height)
+                i = BasicRasterizer.height;
             if(k < i)
             {
                 l = i1 <<= 16;
@@ -1470,24 +1470,24 @@ public class TriangleRasterizer extends Raster {
                     j = heightoffsets[j];
                     while(--k >= 0) 
                     {
-                        drawTexturedLine(Raster.output, ai, 0, 0, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                        drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                         l += i7;
                         i1 += k7;
                         k1 += j7;
                         l1 += l7;
-                        j += Raster.outputwidth;
+                        j += BasicRasterizer.outputwidth;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
                     }
                     while(--i >= 0) 
                     {
-                        drawTexturedLine(Raster.output, ai, 0, 0, j, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                        drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                         l += i7;
                         j1 += i8;
                         k1 += j7;
                         i2 += j8;
-                        j += Raster.outputwidth;
+                        j += BasicRasterizer.outputwidth;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
@@ -1499,24 +1499,24 @@ public class TriangleRasterizer extends Raster {
                 j = heightoffsets[j];
                 while(--k >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                     l += i7;
                     i1 += k7;
                     k1 += j7;
                     l1 += l7;
-                    j += Raster.outputwidth;
+                    j += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
                 }
                 while(--i >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, j, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                     l += i7;
                     j1 += i8;
                     k1 += j7;
                     i2 += j8;
-                    j += Raster.outputwidth;
+                    j += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
@@ -1552,24 +1552,24 @@ public class TriangleRasterizer extends Raster {
                 j = heightoffsets[j];
                 while(--i >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, j, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                     j1 += i7;
                     i1 += k7;
                     i2 += j7;
                     l1 += l7;
-                    j += Raster.outputwidth;
+                    j += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
                 }
                 while(--k >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                     l += i8;
                     i1 += k7;
                     k1 += j8;
                     l1 += l7;
-                    j += Raster.outputwidth;
+                    j += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
@@ -1581,36 +1581,36 @@ public class TriangleRasterizer extends Raster {
             j = heightoffsets[j];
             while(--i >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, j, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                 j1 += i7;
                 i1 += k7;
                 i2 += j7;
                 l1 += l7;
-                j += Raster.outputwidth;
+                j += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
             }
             while(--k >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                 l += i8;
                 i1 += k7;
                 k1 += j8;
                 l1 += l7;
-                j += Raster.outputwidth;
+                j += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
             }
             return;
         }
-        if(k >= Raster.height)
+        if(k >= BasicRasterizer.height)
             return;
-        if(i > Raster.height)
-            i = Raster.height;
-        if(j > Raster.height)
-            j = Raster.height;
+        if(i > BasicRasterizer.height)
+            i = BasicRasterizer.height;
+        if(j > BasicRasterizer.height)
+            j = BasicRasterizer.height;
         if(i < j)
         {
             i1 = j1 <<= 16;
@@ -1642,24 +1642,24 @@ public class TriangleRasterizer extends Raster {
                 k = heightoffsets[k];
                 while(--i >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                     i1 += k7;
                     j1 += i8;
                     l1 += l7;
                     i2 += j8;
-                    k += Raster.outputwidth;
+                    k += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
                 }
                 while(--j >= 0) 
                 {
-                    drawTexturedLine(Raster.output, ai, 0, 0, k, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                    drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                     i1 += k7;
                     l += i7;
                     l1 += l7;
                     k1 += j7;
-                    k += Raster.outputwidth;
+                    k += BasicRasterizer.outputwidth;
                     l4 += j5;
                     k5 += i6;
                     j6 += l6;
@@ -1671,24 +1671,24 @@ public class TriangleRasterizer extends Raster {
             k = heightoffsets[k];
             while(--i >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                 i1 += k7;
                 j1 += i8;
                 l1 += l7;
                 i2 += j8;
-                k += Raster.outputwidth;
+                k += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
             }
             while(--j >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, k, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                 i1 += k7;
                 l += i7;
                 l1 += l7;
                 k1 += j7;
-                k += Raster.outputwidth;
+                k += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
@@ -1724,24 +1724,24 @@ public class TriangleRasterizer extends Raster {
             k = heightoffsets[k];
             while(--j >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, k, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                 l += k7;
                 j1 += i8;
                 k1 += l7;
                 i2 += j8;
-                k += Raster.outputwidth;
+                k += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
             }
             while(--i >= 0) 
             {
-                drawTexturedLine(Raster.output, ai, 0, 0, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                 i1 += i7;
                 j1 += i8;
                 l1 += j7;
                 i2 += j8;
-                k += Raster.outputwidth;
+                k += BasicRasterizer.outputwidth;
                 l4 += j5;
                 k5 += i6;
                 j6 += l6;
@@ -1753,24 +1753,24 @@ public class TriangleRasterizer extends Raster {
         k = heightoffsets[k];
         while(--j >= 0) 
         {
-            drawTexturedLine(Raster.output, ai, 0, 0, k, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+            drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
             l += k7;
             j1 += i8;
             k1 += l7;
             i2 += j8;
-            k += Raster.outputwidth;
+            k += BasicRasterizer.outputwidth;
             l4 += j5;
             k5 += i6;
             j6 += l6;
         }
         while(--i >= 0) 
         {
-            drawTexturedLine(Raster.output, ai, 0, 0, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+            drawTexturedLine(BasicRasterizer.output, ai, 0, 0, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
             i1 += i7;
             j1 += i8;
             l1 += j7;
             i2 += j8;
-            k += Raster.outputwidth;
+            k += BasicRasterizer.outputwidth;
             l4 += j5;
             k5 += i6;
             j6 += l6;
@@ -1787,8 +1787,8 @@ public class TriangleRasterizer extends Raster {
         if(clip)
         {
             j3 = (k1 - j1) / (length - x);
-            if(length > Raster.rwidth_o1)
-                length = Raster.rwidth_o1;
+            if(length > BasicRasterizer.rwidth_o1)
+                length = BasicRasterizer.rwidth_o1;
             if(x < 0)
             {
                 j1 -= x * j3;

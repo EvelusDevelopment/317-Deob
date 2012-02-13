@@ -25,7 +25,7 @@ public class ImageFetcher implements ImageProducer, ImageObserver {
     }
 
     public void initialize(int i) {
-        Raster.setOutput(height, width, pixels);
+        BasicRasterizer.setOutput(height, width, pixels);
     }
 
     public void updateGraphics(int y, int junk, Graphics graphics, int x)

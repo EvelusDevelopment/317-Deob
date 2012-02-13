@@ -7,7 +7,7 @@ import sign.signlink;
 
 public class VarbitFile {
 
-    public static void method533(int i, ContainerArchive class44) {
+    public static void method533(int i, FileContainer class44) {
         if(i != 0)
             anInt644 = 91;
         Buffer buffer0 = new Buffer(class44.getEntry("varbit.dat", null));

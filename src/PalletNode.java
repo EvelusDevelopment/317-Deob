@@ -6,7 +6,7 @@
 public class PalletNode extends Node {
 
     public PalletNode(int i, int j, int k) {
-        aClass28Array1318 = new GeneralObject[5];
+        aClass28Array1318 = new GeneralEntity[5];
         anIntArray1319 = new int[5];
         anInt1310 = anInt1307 = i;
         anInt1308 = j;
@@ -24,7 +24,7 @@ public class PalletNode extends Node {
     public FloorDecoration aClass49_1315;
     public ItemTile aClass3_1316;
     public int anInt1317;
-    public GeneralObject aClass28Array1318[];
+    public GeneralEntity aClass28Array1318[];
     public int anIntArray1319[];
     public int anInt1320;
     public int anInt1321;

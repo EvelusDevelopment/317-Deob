@@ -141,7 +141,7 @@ public class Player extends Mob {
         super.run_anim = buffer0.getShort();
         if(super.run_anim == 65535)
             super.run_anim = -1;
-        name = TextUtils.formatUsername(-45804, TextUtils.longToString(buffer0.getLong(-35089), (byte)-99));
+        name = TextTools.formatUsername(-45804, TextTools.longToString(buffer0.getLong(-35089), (byte)-99));
         combatlevel = buffer0.getUByte();
         skilltotal = buffer0.getShort();
         updated = true;

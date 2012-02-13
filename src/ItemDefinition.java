@@ -34,7 +34,7 @@ public class ItemDefinition {
         return flag;
     }
 
-    public static void amountitems(ContainerArchive class44)
+    public static void amountitems(FileContainer class44)
     {
         info_buffer = new Buffer(class44.getEntry("obj.dat", null));
         Buffer buffer0 = new Buffer(class44.getEntry("obj.idx", null));
@@ -279,16 +279,16 @@ public class ItemDefinition {
         int k1 = TriangleRasterizer.midwidth;
         int l1 = TriangleRasterizer.midheight;
         int heightoffsets[] = TriangleRasterizer.heightoffsets;
-        int output[] = Raster.output;
-        int outwidth = Raster.outputwidth;
-        int outheight = Raster.outputheight;
-        int offsetwidth = Raster.widthoffset;
-        int rasterwidth = Raster.width;
-        int offsetheight = Raster.heightoffset;
-        int rasterheight = Raster.height;
+        int output[] = BasicRasterizer.output;
+        int outwidth = BasicRasterizer.outputwidth;
+        int outheight = BasicRasterizer.outputheight;
+        int offsetwidth = BasicRasterizer.widthoffset;
+        int rasterwidth = BasicRasterizer.width;
+        int offsetheight = BasicRasterizer.heightoffset;
+        int rasterheight = BasicRasterizer.height;
         TriangleRasterizer.aBoolean1464 = false;
-        Raster.setOutput(32, 32, sprite1.pixels);
-        Raster.drawQuadrilateral(0, 0, 32, 32, 0);
+        BasicRasterizer.setOutput(32, 32, sprite1.pixels);
+        BasicRasterizer.drawQuadrilateral(0, 0, 32, 32, 0);
         TriangleRasterizer.setDimensions();
         int k3 = class8.zoom;
         if(k == -1)
@@ -360,8 +360,8 @@ public class ItemDefinition {
         }
         if(k == 0)
             aClass12_158.method223(sprite1, id, (byte)2);
-        Raster.setOutput(outheight, outwidth, output);
-        Raster.setDimensions(rasterwidth, offsetwidth, rasterheight, offsetheight);
+        BasicRasterizer.setOutput(outheight, outwidth, output);
+        BasicRasterizer.setDimensions(rasterwidth, offsetwidth, rasterheight, offsetheight);
         TriangleRasterizer.midwidth = k1;
         TriangleRasterizer.midheight = l1;
         TriangleRasterizer.heightoffsets = heightoffsets;

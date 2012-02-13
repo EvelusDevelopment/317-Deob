@@ -137,12 +137,12 @@ public class SoundTrack {
                     l7 = i - i5;
                 for(; j7 < l7; j7++)
                 {
-                    int j8 = (int)((long)anIntArray115[j7 + i5] * (long)MusicIdk.anInt672 >> 16);
+                    int j8 = (int)((long)anIntArray115[j7 + i5] * (long)Music$.anInt672 >> 16);
                     for(int k8 = 0; k8 < i5; k8++)
-                        j8 += (int)((long)anIntArray115[(j7 + i5) - 1 - k8] * (long)MusicIdk.anIntArrayArray670[0][k8] >> 16);
+                        j8 += (int)((long)anIntArray115[(j7 + i5) - 1 - k8] * (long)Music$.anIntArrayArray670[0][k8] >> 16);
 
                     for(int j9 = 0; j9 < j7; j9++)
-                        j8 -= (int)((long)anIntArray115[j7 - 1 - j9] * (long)MusicIdk.anIntArrayArray670[1][j9] >> 16);
+                        j8 -= (int)((long)anIntArray115[j7 - 1 - j9] * (long)Music$.anIntArrayArray670[1][j9] >> 16);
 
                     anIntArray115[j7] = j8;
                     k3 = aClass29_112.method328(true, i + 1);
@@ -156,12 +156,12 @@ public class SoundTrack {
                         l7 = i - i5;
                     for(; j7 < l7; j7++)
                     {
-                        int l8 = (int)((long)anIntArray115[j7 + i5] * (long)MusicIdk.anInt672 >> 16);
+                        int l8 = (int)((long)anIntArray115[j7 + i5] * (long)Music$.anInt672 >> 16);
                         for(int k9 = 0; k9 < i5; k9++)
-                            l8 += (int)((long)anIntArray115[(j7 + i5) - 1 - k9] * (long)MusicIdk.anIntArrayArray670[0][k9] >> 16);
+                            l8 += (int)((long)anIntArray115[(j7 + i5) - 1 - k9] * (long)Music$.anIntArrayArray670[0][k9] >> 16);
 
                         for(int i10 = 0; i10 < i6; i10++)
-                            l8 -= (int)((long)anIntArray115[j7 - 1 - i10] * (long)MusicIdk.anIntArrayArray670[1][i10] >> 16);
+                            l8 -= (int)((long)anIntArray115[j7 - 1 - i10] * (long)Music$.anIntArrayArray670[1][i10] >> 16);
 
                         anIntArray115[j7] = l8;
                         k3 = aClass29_112.method328(true, i + 1);
@@ -177,10 +177,10 @@ public class SoundTrack {
                 {
                     int i9 = 0;
                     for(int l9 = (j7 + i5) - i; l9 < i5; l9++)
-                        i9 += (int)((long)anIntArray115[(j7 + i5) - 1 - l9] * (long)MusicIdk.anIntArrayArray670[0][l9] >> 16);
+                        i9 += (int)((long)anIntArray115[(j7 + i5) - 1 - l9] * (long)Music$.anIntArrayArray670[0][l9] >> 16);
 
                     for(int j10 = 0; j10 < i6; j10++)
-                        i9 -= (int)((long)anIntArray115[j7 - 1 - j10] * (long)MusicIdk.anIntArrayArray670[1][j10] >> 16);
+                        i9 -= (int)((long)anIntArray115[j7 - 1 - j10] * (long)Music$.anIntArrayArray670[1][j10] >> 16);
 
                     anIntArray115[j7] = i9;
                     int l3 = aClass29_112.method328(true, i + 1);
@@ -220,9 +220,9 @@ public class SoundTrack {
 
     public void method169(boolean flag, Buffer buffer0)
     {
-        aClass29_98 = new Sample();
+        aClass29_98 = new WaveSample();
         aClass29_98.method325(true, buffer0);
-        aClass29_99 = new Sample();
+        aClass29_99 = new WaveSample();
         if(!flag)
             throw new NullPointerException();
         aClass29_99.method325(true, buffer0);
@@ -230,27 +230,27 @@ public class SoundTrack {
         if(i != 0)
         {
             buffer0.position--;
-            aClass29_100 = new Sample();
+            aClass29_100 = new WaveSample();
             aClass29_100.method325(true, buffer0);
-            aClass29_101 = new Sample();
+            aClass29_101 = new WaveSample();
             aClass29_101.method325(true, buffer0);
         }
         i = buffer0.getUByte();
         if(i != 0)
         {
             buffer0.position--;
-            aClass29_102 = new Sample();
+            aClass29_102 = new WaveSample();
             aClass29_102.method325(true, buffer0);
-            aClass29_103 = new Sample();
+            aClass29_103 = new WaveSample();
             aClass29_103.method325(true, buffer0);
         }
         i = buffer0.getUByte();
         if(i != 0)
         {
             buffer0.position--;
-            aClass29_104 = new Sample();
+            aClass29_104 = new WaveSample();
             aClass29_104.method325(true, buffer0);
-            aClass29_105 = new Sample();
+            aClass29_105 = new WaveSample();
             aClass29_105.method325(true, buffer0);
         }
         for(int j = 0; j < 10; j++)
@@ -267,8 +267,8 @@ public class SoundTrack {
         anInt110 = buffer0.getSmartB();
         anInt113 = buffer0.getShort();
         anInt114 = buffer0.getShort();
-        aClass39_111 = new MusicIdk();
-        aClass29_112 = new Sample();
+        aClass39_111 = new Music$();
+        aClass29_112 = new WaveSample();
         aClass39_111.method545(buffer0, false, aClass29_112);
     }
 
@@ -283,21 +283,21 @@ public class SoundTrack {
     }
 
     public boolean aBoolean97;
-    public Sample aClass29_98;
-    public Sample aClass29_99;
-    public Sample aClass29_100;
-    public Sample aClass29_101;
-    public Sample aClass29_102;
-    public Sample aClass29_103;
-    public Sample aClass29_104;
-    public Sample aClass29_105;
+    public WaveSample aClass29_98;
+    public WaveSample aClass29_99;
+    public WaveSample aClass29_100;
+    public WaveSample aClass29_101;
+    public WaveSample aClass29_102;
+    public WaveSample aClass29_103;
+    public WaveSample aClass29_104;
+    public WaveSample aClass29_105;
     public int anIntArray106[];
     public int anIntArray107[];
     public int anIntArray108[];
     public int anInt109;
     public int anInt110;
-    public MusicIdk aClass39_111;
-    public Sample aClass29_112;
+    public Music$ aClass39_111;
+    public WaveSample aClass29_112;
     public int anInt113;
     public int anInt114;
     public static int anIntArray115[];

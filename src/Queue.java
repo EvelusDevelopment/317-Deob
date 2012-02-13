@@ -21,7 +21,7 @@ public class Queue {
         class30_sub2.aClass30_Sub2_1303.aClass30_Sub2_1304 = class30_sub2;
     }
 
-    public SubNode method151()
+    public SubNode poll()
     {
         SubNode class30_sub2 = aClass30_Sub2_43.aClass30_Sub2_1303;
         if(class30_sub2 == aClass30_Sub2_43)
@@ -34,7 +34,7 @@ public class Queue {
         }
     }
 
-    public SubNode method152() {
+    public SubNode getFirst() {
         SubNode class30_sub2 = aClass30_Sub2_43.aClass30_Sub2_1303;
         if(class30_sub2 == aClass30_Sub2_43) {
             aClass30_Sub2_44 = null;
@@ -45,7 +45,7 @@ public class Queue {
         }
     }
 
-    public SubNode method153(boolean junk) {
+    public SubNode next(boolean junk) {
         SubNode class30_sub2 = aClass30_Sub2_44;
         if(class30_sub2 == aClass30_Sub2_43) {
             aClass30_Sub2_44 = null;

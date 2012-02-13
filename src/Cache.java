@@ -36,12 +36,12 @@ public class Cache {
         {
             if(anInt302 == 0)
             {
-                SubNode class30_sub2_1 = aClass2_304.method151();
+                SubNode class30_sub2_1 = aClass2_304.poll();
                 class30_sub2_1.removeDeque();
                 class30_sub2_1.removeQueue();
                 if(class30_sub2_1 == aClass30_Sub2_300)
                 {
-                    SubNode class30_sub2_2 = aClass2_304.method151();
+                    SubNode class30_sub2_2 = aClass2_304.poll();
                     class30_sub2_2.removeDeque();
                     class30_sub2_2.removeQueue();
                 }
@@ -62,7 +62,7 @@ public class Cache {
     public void clear() {
         do
         {
-            SubNode class30_sub2 = aClass2_304.method151();
+            SubNode class30_sub2 = aClass2_304.poll();
             if(class30_sub2 != null) {
                 class30_sub2.removeDeque();
                 class30_sub2.removeQueue();

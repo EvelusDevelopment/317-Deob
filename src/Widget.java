@@ -15,7 +15,7 @@ public class Widget {
         itemamounts[j] = k;
     }
 
-    public static void unpackWidgets(ContainerArchive widgetarchive, RSFont fonts[], ContainerArchive spritearchive)
+    public static void unpackWidgets(FileContainer widgetarchive, BitmapFont fonts[], FileContainer spritearchive)
     {
         aClass12_238 = new Cache(false, 50000);
         Buffer buffer0 = new Buffer(widgetarchive.getEntry("data", null));
@@ -262,9 +262,9 @@ public class Widget {
         return class30_sub2_sub4_sub6;
     }
 
-    public static DirectColorSprite getInterfaceSprite(int id, ContainerArchive archive, String name)
+    public static DirectColorSprite getInterfaceSprite(int id, FileContainer archive, String name)
     {
-        long hash = (TextUtils.hashString((byte)1, name) << 8) + (long) id;
+        long hash = (TextTools.hashString((byte)1, name) << 8) + (long) id;
         DirectColorSprite sprite = (DirectColorSprite) aClass12_238.method222(hash);
         if(sprite != null)
             return sprite;
@@ -356,7 +356,7 @@ public class Widget {
     public int childrenwidgets[];
     public int positionx[];
     public boolean aBoolean242;
-    public RSFont itemfont;
+    public BitmapFont itemfont;
     public int anInt244;
     public int updateconditions[];
     public int anInt246;

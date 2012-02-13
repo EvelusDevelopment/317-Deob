@@ -7,7 +7,7 @@ import sign.signlink;
 
 public class CharModel {
 
-    public static void method535(int junk, ContainerArchive class44) {
+    public static void method535(int junk, FileContainer class44) {
         Buffer buffer0 = new Buffer(class44.getEntry("idk.dat", null));
         anInt655 = buffer0.getShort();
         if(charactermodels == null)

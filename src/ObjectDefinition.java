@@ -74,7 +74,7 @@ public class ObjectDefinition {
         aClass30_Sub2_Sub2_753 = null;
     }
 
-    public static void initialize(ContainerArchive class44)
+    public static void initialize(FileContainer class44)
     {
         aClass30_Sub2_Sub2_753 = new Buffer(class44.getEntry("loc.dat", null));
         Buffer buffer0 = new Buffer(class44.getEntry("loc.idx", null));

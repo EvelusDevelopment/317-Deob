@@ -7,7 +7,7 @@ import sign.signlink;
 
 public class VarpFile {
 
-    public static void method546(int i, ContainerArchive class44)
+    public static void method546(int i, FileContainer class44)
     {
         Buffer buffer0 = new Buffer(class44.getEntry("varp.dat", null));
         anInt702 = 0;

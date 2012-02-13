@@ -661,11 +661,11 @@ public class Model extends Entity {
                     triangleopcodes[i1] = class30_sub2_sub4_sub6.triangleopcodes[i1];
 
             }
-            super.surfaces = new Surface[numverticies];
+            super.surfaces = new GouraudVertex[numverticies];
             for(int j1 = 0; j1 < numverticies; j1++)
             {
-                Surface class33 = super.surfaces[j1] = new Surface();
-                Surface class33_1 = ((Entity) (class30_sub2_sub4_sub6)).surfaces[j1];
+                GouraudVertex class33 = super.surfaces[j1] = new GouraudVertex();
+                GouraudVertex class33_1 = ((Entity) (class30_sub2_sub4_sub6)).surfaces[j1];
                 class33.vectorx = class33_1.vectorx;
                 class33.vectory = class33_1.vectory;
                 class33.vectorz = class33_1.vectorz;
@@ -1224,9 +1224,9 @@ public class Model extends Entity {
         }
         if(super.surfaces == null)
         {
-            super.surfaces = new Surface[numverticies];
+            super.surfaces = new GouraudVertex[numverticies];
             for(int l1 = 0; l1 < numverticies; l1++)
-                super.surfaces[l1] = new Surface();
+                super.surfaces[l1] = new GouraudVertex();
 
         }
         for(int i2 = 0; i2 < numtriangles; i2++) // a^2 + b^2 = c^2, sqr(a^2 + b^2) = c,
@@ -1258,7 +1258,7 @@ public class Model extends Entity {
             j5 = (j5 * 256) / k5;
             if(triangleopcodes == null || (triangleopcodes[i2] & 1) == 0)
             {
-                Surface class33_2 = super.surfaces[j2];
+                GouraudVertex class33_2 = super.surfaces[j2];
                 class33_2.vectorx += l4;
                 class33_2.vectory += i5;
                 class33_2.vectorz += j5;
@@ -1285,11 +1285,11 @@ public class Model extends Entity {
             applyShading(xmulti, ymulti, zmulti, valuemulti, constant);
         } else
         {
-            aClass33Array1660 = new Surface[numverticies];
+            aClass33Array1660 = new GouraudVertex[numverticies];
             for(int k2 = 0; k2 < numverticies; k2++)
             {
-                Surface class33 = super.surfaces[k2];
-                Surface class33_1 = aClass33Array1660[k2] = new Surface();
+                GouraudVertex class33 = super.surfaces[k2];
+                GouraudVertex class33_1 = aClass33Array1660[k2] = new GouraudVertex();
                 class33_1.vectorx = class33.vectorx;
                 class33_1.vectory = class33.vectory;
                 class33_1.vectorz = class33.vectorz;
@@ -1318,7 +1318,7 @@ public class Model extends Entity {
             if(triangleopcodes == null)
             {
                 int color = trianglecolors[j1];
-                Surface surface = super.surfaces[v0];
+                GouraudVertex surface = super.surfaces[v0];
                 int k2 = constant + (xmulti * surface.vectorx + ymulti * surface.vectory + zmulti * surface.vectorz) / (valuesmulti * surface.values);
                 vertexcolors0[j1] = method481(color, k2, 0);
                 surface = super.surfaces[v1];
@@ -1331,7 +1331,7 @@ public class Model extends Entity {
             {
                 int color = trianglecolors[j1];
                 int opcode = triangleopcodes[j1];
-                Surface class33_1 = super.surfaces[v0];
+                GouraudVertex class33_1 = super.surfaces[v0];
                 int l2 = constant + (xmulti * class33_1.vectorx + ymulti * class33_1.vectory + zmulti * class33_1.vectorz) / (valuesmulti * class33_1.values);
                 vertexcolors0[j1] = method481(color, l2, opcode);
                 class33_1 = super.surfaces[v1];
@@ -1450,19 +1450,19 @@ public class Model extends Entity {
             return;
         int j3 = originz * l + originx * i1 >> 16;
         int k3 = j3 - maxdistxz << 9;
-        if(k3 / i3 >= Raster.centerwidth)
+        if(k3 / i3 >= BasicRasterizer.centerwidth)
             return;
         int l3 = j3 + maxdistxz << 9;
-        if(l3 / i3 <= -Raster.centerwidth)
+        if(l3 / i3 <= -BasicRasterizer.centerwidth)
             return;
         int i4 = originy * k - j2 * j >> 16;
         int j4 = maxdistxz * j >> 16;
         int k4 = i4 + j4 << 9;
-        if(k4 / i3 <= -Raster.centerheight)
+        if(k4 / i3 <= -BasicRasterizer.centerheight)
             return;
         int l4 = j4 + (super.miny * k >> 16);
         int i5 = i4 - l4 << 9;
-        if(i5 / i3 >= Raster.centerheight)
+        if(i5 / i3 >= BasicRasterizer.centerheight)
             return;
         int j5 = l2 + (super.miny * j >> 16);
         boolean flag = false;
@@ -1579,7 +1579,7 @@ public class Model extends Entity {
                     trideptharray[depth][tridepthoffsets[depth]++] = triangle;
                 } else
                 {
-                    if(flag1 && method486(anInt1685, anInt1686, yvertex$[l], yvertex$[k1], yvertex$[j2], i3, l3, k4))
+                    if(flag1 && inBounds(anInt1685, anInt1686, yvertex$[l], yvertex$[k1], yvertex$[j2], i3, l3, k4))
                     {
                         anIntArray1688[anInt1687++] = i;
                         flag1 = false;
@@ -1587,7 +1587,7 @@ public class Model extends Entity {
                     if((i3 - l3) * (yvertex$[j2] - yvertex$[k1]) - (yvertex$[l] - yvertex$[k1]) * (k4 - l3) > 0)
                     {
                         aBooleanArray1664[triangle] = false;
-                        if(i3 < 0 || l3 < 0 || k4 < 0 || i3 > Raster.rwidth_o1 || l3 > Raster.rwidth_o1 || k4 > Raster.rwidth_o1)
+                        if(i3 < 0 || l3 < 0 || k4 < 0 || i3 > BasicRasterizer.rwidth_o1 || l3 > BasicRasterizer.rwidth_o1 || k4 > BasicRasterizer.rwidth_o1)
                             cliptriangle[triangle] = true;
                         else
                             cliptriangle[triangle] = false;
@@ -1883,7 +1883,7 @@ public class Model extends Entity {
         if((x0 - x1) * (y2 - y1) - (y0 - y1) * (x2 - x1) > 0) {
             TriangleRasterizer.clip = false;
             if(offset == 3) {
-                if(x0 < 0 || x1 < 0 || x2 < 0 || x0 > Raster.rwidth_o1 || x1 > Raster.rwidth_o1 || x2 > Raster.rwidth_o1)
+                if(x0 < 0 || x1 < 0 || x2 < 0 || x0 > BasicRasterizer.rwidth_o1 || x1 > BasicRasterizer.rwidth_o1 || x2 > BasicRasterizer.rwidth_o1)
                     TriangleRasterizer.clip = true;
                 int opcode;
                 if(triangleopcodes == null)
@@ -1909,7 +1909,7 @@ public class Model extends Entity {
                     TriangleRasterizer.drawTexturedTriangle(y0, y1, y2, x0, x1, x2, vertexcolors0[id], vertexcolors0[id], vertexcolors0[id], xtexed$[l9], xtexed$[l10], xtexed$[l11], ytexed$[l9], ytexed$[l10], ytexed$[l11], ztexed$[l9], ztexed$[l10], ztexed$[l11], trianglecolors[id]);
                 }
             } if(offset == 4) {
-                if(x0 < 0 || x1 < 0 || x2 < 0 || x0 > Raster.rwidth_o1 || x1 > Raster.rwidth_o1 || x2 > Raster.rwidth_o1 || drawxstack[3] < 0 || drawxstack[3] > Raster.rwidth_o1)
+                if(x0 < 0 || x1 < 0 || x2 < 0 || x0 > BasicRasterizer.rwidth_o1 || x1 > BasicRasterizer.rwidth_o1 || x2 > BasicRasterizer.rwidth_o1 || drawxstack[3] < 0 || drawxstack[3] > BasicRasterizer.rwidth_o1)
                     TriangleRasterizer.clip = true;
                 int opcode;
                 if(triangleopcodes == null)
@@ -1948,7 +1948,7 @@ public class Model extends Entity {
         }
     }
 
-    public boolean method486(int i, int j, int k, int l, int i1, int j1, int k1, 
+    public boolean inBounds(int i, int j, int k, int l, int i1, int j1, int k1, 
             int l1)
     {
         if(j < k && j < l && j < i1)
@@ -2006,7 +2006,7 @@ public class Model extends Entity {
     public int vertexgroups[][];
     public int trianglegroups[][];
     public boolean aBoolean1659;
-    public Surface aClass33Array1660[];
+    public GouraudVertex aClass33Array1660[];
     public static RawModel rawmodels[];
     public static NumericLoader numericloader;
     public static boolean cliptriangle[] = new boolean[4096];

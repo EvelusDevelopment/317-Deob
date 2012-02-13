@@ -7,7 +7,7 @@ import sign.signlink;
 
 public class AnimSequence {
 
-    public static void unpackAnimSequences(ContainerArchive archive) {
+    public static void unpackAnimSequences(FileContainer archive) {
         Buffer buffer0 = new Buffer(archive.getEntry("seq.dat", null));
         amountanimationseqs = buffer0.getShort();
         if(animationsequences == null)

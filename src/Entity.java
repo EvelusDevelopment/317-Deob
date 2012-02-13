@@ -22,6 +22,6 @@ public class Entity extends SubNode {
         miny = 1000;
     }
 
-    public Surface surfaces[];
+    public GouraudVertex surfaces[];
     public int miny;
 }
